@@ -246,7 +246,7 @@ function registerServiceWorker() {
     navigator.serviceWorker
       .addEventListener('controllerchange', () => window.location.reload());
 
-    navigator.serviceWorker.register('/sw.js');
+    navigator.serviceWorker.register('/sw.min.js');
   }
 }
 
