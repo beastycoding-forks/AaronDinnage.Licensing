@@ -30,12 +30,9 @@
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
 <link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png" />
-<link rel="license" href="https://creativecommons.org/licenses/by/4.0/" />
 <link rel="manifest" href="/manifest.json" />
-<link rel="stylesheet" href="/css/common.min.css" />
-<link rel="stylesheet" href="/css/viewsvg.min.css" />
-<script src="/js/common.min.js"></script>
-<script src="/js/viewsvg.min.js"></script>
+<link rel="stylesheet" href="/css/viewsvg.css" />
+<script src="/js/viewsvg.js" type="module"></script>
 <title>Entra Workload Identities | M365 Maps</title>
 </head>
 <body oncontextmenu="return false">
@@ -50,6 +47,7 @@
 <button type="button" id="menu-back" accesskey="b" title="Back"></button>
 <button type="button" id="menu-flag" accesskey="g" title="Flag"></button>
 <button type="button" id="menu-save" accesskey="s" title="Save a copy"></button>
+<button type="button" id="menu-map" accesskey="f" title="Feature maps"></button>
 <button type="button" id="menu-controls" accesskey="c" title="Controls"></button>
 <button type="button" id="menu-edit" accesskey="t" title="Edit modes"></button>
 <button type="button" id="menu-download-pdf" title="Download PDF">PDF</button>
@@ -103,16 +101,16 @@
 <button type="button" id="menu-zoom-out" accesskey="-" title="Zoom out"></button>
 </div>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="496" height="176" viewBox="0 0 496 176" class="a"><style>
-.b {fill:#a5a5a5;fill-opacity:0.2;stroke:#0070f7;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.2}
-.c {fill:#0070f7;stroke:#0070f7;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.2}
-.d {fill:#ffffff;font-family:Arial;font-size:1.7em;font-weight:bold}
+<svg xmlns="http://www.w3.org/2000/svg" width="496" height="192" viewBox="0 0 496 192" class="a"><style>
+.b {fill:#a5a5a5;fill-opacity:0.2;stroke:#0070f7;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+.c {fill:#0070f7;stroke:#0070f7;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+.d {fill:#ffffff;font-family:Arial;font-size:1.66667em;font-weight:bold}
 .e {fill:#0070f7;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
-.f {fill:#ffffff;font-family:Arial;font-size:1.2em;font-weight:bold}
+.f {fill:#ffffff;font-family:Arial;font-size:1.16666em;font-weight:bold}
 .g {font-size:1em}
-.h {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.8}
-.i {fill:#7f7f7f;font-family:Calibri;font-size:1em}
+.h {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+.i {fill:#7f7f7f;font-family:Calibri;font-size:1.00001em}
 .a {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
-</style><rect x="16" y="16" width="464" height="144" rx="8" ry="8" class="b"/><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/develop/workload-identities-overview"><rect x="16" y="16" width="464" height="32" rx="8" ry="8" class="c"/><text x="95.2" y="38" class="d">Entra Workload Identities Plan 1</text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/conditional-access/workload-identity"><rect x="144" y="64" width="96" height="80" rx="8" ry="8" class="e"/><text x="153.5" y="99.8" class="f">Conditional <tspan x="167.5" dy="1.2em" class="g">Access</tspan></text></a><a target="_blank" href="https://m365maps.com/"><rect y="160" width="496" height="16" class="h"/><text x="413.8" y="171.6" class="i">m365maps.com</text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/privileged-identity-management/pim-create-azure-ad-roles-and-resource-roles-review"><rect x="32" y="64" width="96" height="80" rx="8" ry="8" class="e"/><text x="55.5" y="99.8" class="f">Access <tspan x="52" dy="1.2em" class="g">Reviews</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/identity-protection/concept-workload-identity-risk"><rect x="368" y="64" width="96" height="80" rx="8" ry="8" class="e"/><text x="391.1" y="99.8" class="f">Identity <tspan x="381.4" dy="1.2em" class="g">Protection</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/develop/workload-identity-federation"><rect x="256" y="64" width="96" height="80" rx="8" ry="8" class="e"/><text x="279.1" y="99.8" class="f">Identity <tspan x="268.2" dy="1.2em" class="g">Federation</tspan></text></a></svg>
+</style><rect x="16" y="16" width="464" height="160" rx="8" ry="8" class="b"/><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/develop/workload-identities-overview"><rect x="16" y="16" width="464" height="48" rx="8" ry="8" class="c"/><text x="95.2" y="46" class="d">Entra Workload Identities Plan 1</text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/conditional-access/workload-identity"><rect x="144" y="80" width="96" height="80" rx="8" ry="8" class="e" data-feature="95878F29-DE69-BB49-81E1-96E68B0D606F"/><text x="153.5" y="115.8" class="f">Conditional <tspan x="167.5" dy="1.2em" class="g">Access</tspan></text></a><a target="_blank" href="https://m365maps.com/"><rect x="0" y="176" width="496" height="16" class="h"/><text x="413.8" y="187.6" class="i">m365maps.com</text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/privileged-identity-management/pim-create-azure-ad-roles-and-resource-roles-review"><rect x="32" y="80" width="96" height="80" rx="8" ry="8" class="e" data-feature="D7B181E6-14BC-D04C-BA17-80830F8BB174"/><text x="55.5" y="115.8" class="f">Access <tspan x="52" dy="1.2em" class="g">Reviews</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/identity-protection/concept-workload-identity-risk"><rect x="368" y="80" width="96" height="80" rx="8" ry="8" class="e" data-feature="D87AB968-B548-994B-B018-FCB789AD7B0B"/><text x="391.1" y="115.8" class="f">Identity <tspan x="381.4" dy="1.2em" class="g">Protection</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/azure/active-directory/develop/workload-identity-federation"><rect x="256" y="80" width="96" height="80" rx="8" ry="8" class="e"/><text x="279.1" y="115.8" class="f">Identity <tspan x="268.2" dy="1.2em" class="g">Federation</tspan></text></a></svg>
 </body>
 </html>

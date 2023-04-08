@@ -1,8 +1,10 @@
+@import 'common.css';
+
 h1 {
-  font-size: 24px;
-  padding-left: 28px;
   background: url(/media/sprites.svg#cog) left center no-repeat;
   background-size: 20px;
+  font-size: 24px;
+  padding-left: 28px;
 }
 
 #menu {
@@ -10,25 +12,25 @@ h1 {
 }
 
 div.settings-collection {
+  align-items: center;
   display: grid;
-  grid-auto-rows: min-content;
+  gap: 2px 16px;
   grid-auto-columns: minmax(min-content, max-content) auto;
   grid-auto-flow: row;
-  gap: 2px 16px;
-  align-items: center;
+  grid-auto-rows: min-content;
 }
 
 div.divider {
-  grid-row: auto;
   grid-column: span 2;
+  grid-row: auto;
 }
 
 h2.settings-header {
-  grid-row: auto;
-  grid-column: 1;
-  margin: 0;
   font-size: 18px;
+  grid-column: 1;
+  grid-row: auto;
   justify-self: start;
+  margin: 0;
 }
 
 h2.highlight {
@@ -57,39 +59,41 @@ h2.zoom {
 }
 
 input[type=color] {
-  height: 24px;
-  width: 64px;
-  padding: 0;
   border-radius: 2px;
+  height: 24px;
+  margin: 2px 0;
+  padding: 0;
+  width: 64px;
 }
 
 select {
-  height: 24px;
-  width: 120px;
   border-radius: 2px;
+  height: 24px;
+  margin: 2px 0;
+  width: 120px;
 }
 
 div.settings-values {
-  grid-row: auto;
   grid-column: 2;
+  grid-row: auto;
   margin: 0;
   padding: 0;
 }
 
 #defaults {
-  padding: 8px 8px 6px 32px;
   background: var(--menu-color) url(/media/sprites.svg#defaults) left 8px center no-repeat;
   background-size: 18px;
+  padding: 8px 8px 6px 32px;
 }
 
 #save {
-  padding: 8px 8px 6px 32px;
   background: var(--menu-color) url(/media/sprites.svg#save) left 8px center no-repeat;
   background-size: 18px;
+  padding: 8px 8px 6px 32px;
 }
 
 #cancel {
-  padding: 8px 8px 6px 32px;
   background: var(--menu-color) url(/media/sprites.svg#delete) left 8px center no-repeat;
   background-size: 18px;
+  padding: 8px 8px 6px 32px;
 }

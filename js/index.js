@@ -1,32 +1,34 @@
-/// <reference path="common.js" />
-/* global isEmbedded, StoreName */
+import { StoreName, isEmbedded } from './common.js';
 
 /** Sets the display properties and attaches event listeners to flags. */
 function setupFlags() {
-  let flags = [];
   const flagsJSON = localStorage.getItem(StoreName.Flags);
-  if (flagsJSON) flags = JSON.parse(flagsJSON);
+  if (!flagsJSON) return;
 
-  const links = document.getElementsByClassName('diagram-link');
-  for (const link of links) {
-    const filename = link.pathname.slice(1, -4);
-    if (flags.includes(filename)) link.classList.add('flagged');
+  const flags = JSON.parse(flagsJSON);
+
+  document.querySelectorAll('.diagram-link').forEach((link) => {
+    const filename = link.pathname.slice(
+      link.pathname.lastIndexOf('/') + 1,
+      link.pathname.lastIndexOf('.'),
+    );
+
+    if (flags.includes(filename)) {
+      link.classList.add('flagged');
+    }
 
     // TODO: Hover preview?
     // const preview = document.createElement('img');
     // preview.src = '/' + filename + '.svg';
     // preview.height = "200";
     // button.nextSibling.appendChild(preview);
-  }
+  });
 }
 
-/** DOM Content Loaded event handler. */
-function DOMContentLoaded() {
+document.addEventListener('DOMContentLoaded', () => {
   if (isEmbedded()) {
     document.getElementById('footer').style.display = 'none';
   }
 
   setupFlags();
-}
-
-document.addEventListener('DOMContentLoaded', DOMContentLoaded);
+});

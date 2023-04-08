@@ -1,8 +1,10 @@
+@import 'common.css';
+
 h1 {
-  font-size: 24px;
-  padding-left: 28px;
   background: url(/media/sprites.svg#save) left center no-repeat;
   background-size: 20px;
+  font-size: 24px;
+  padding-left: 28px;
 }
 
 #file-selector {
@@ -10,82 +12,82 @@ h1 {
 }
 
 #collection {
-  display: grid;
-  grid-auto-columns: minmax(128px, max-content) min-content min-content min-content min-content;
-  grid-auto-rows: min-content;
-  grid-auto-flow: row;
-  gap: 2px 16px;
   align-items: center;
+  display: grid;
+  gap: 2px 16px;
+  grid-auto-columns: minmax(128px, max-content) min-content min-content min-content min-content;
+  grid-auto-flow: row;
+  grid-auto-rows: min-content;
 }
 
-#collection>p {
+#collection > a {
+  font-weight: bold;
+  grid-column: 1;
   grid-row: auto;
-  grid-column: span 5;
+  justify-self: start;
 }
 
-#collection>button {
-  margin: 0;
-  border: 0;
+#collection > button {
   border-radius: 0;
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
+  border: 0;
   color: var(--accent-color);
   font-weight: normal;
+  height: 16px;
+  margin: 0;
+  min-width: 16px;
+  width: 16px;
+}
+
+#collection > p {
+  grid-column: span 5;
+  grid-row: auto;
 }
 
 div.divider {
-  grid-row: auto;
   grid-column: span 5;
-}
-
-a.diagram {
   grid-row: auto;
-  grid-column: 1;
-  justify-self: start;
-  /* min-width: 160px; */
-  font-weight: bold;
 }
 
 button.rename {
-  grid-row: auto;
-  grid-column: 2;
   background: url(/media/sprites.svg#rename) left center no-repeat;
   background-size: 16px;
+  grid-column: 2;
+  grid-row: auto;
 }
 
 button.delete {
-  grid-row: auto;
-  grid-column: 3;
   background: url(/media/sprites.svg#delete) left center no-repeat;
   background-size: 16px;
+  grid-column: 3;
+  grid-row: auto;
 }
 
 button.export {
-  grid-row: auto;
-  grid-column: auto;
   background: url(/media/sprites.svg#export) left center no-repeat;
   background-size: 16px;
+  grid-column: auto;
+  grid-row: auto;
+  height: 16px;
   padding: 1px 2px 1px 18px;
   width: 48px !important;
-  height: 16px;
 }
 
-#export-all-png, #export-all-svg {
-  padding: 8px 8px 6px 32px;
-  background: var(--menu-color) url(/media/sprites.svg#export) left 8px center no-repeat;
+#export-all-png,
+#export-all-svg {
+  background: var(--menu-color) url(/media/sprites.svg#export-all) left 8px center no-repeat;
   background-size: 18px;
+  padding: 8px 8px 6px 32px;
 }
 
 #import {
-  padding: 8px 8px 6px 32px;
   background: var(--menu-color) url(/media/sprites.svg#import) left 8px center no-repeat;
   background-size: 18px;
+  padding: 8px 8px 6px 32px;
 }
 
 a.home-link {
-  grid-row: auto;
   grid-column: 1;
+  grid-row: auto;
   text-align: left;
 }
 

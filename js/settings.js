@@ -1,6 +1,7 @@
-/// <reference path="common.js" />
-/* global Settings, saveSettings, isEmbedded, setTheme, setupModal,
-   defaultSettings, backOrHome, showModalDialog */
+import {
+  Settings, backOrHome, defaultSettings, isEmbedded, saveSettings,
+  showModalDialog, setTheme, setupModal,
+} from './common.js';
 
 /** Save click event to commit changes. */
 function saveClick() {
@@ -22,8 +23,7 @@ function saveClick() {
 
   if (isEmbedded()) {
     showModalDialog('Settings saved.', false, undefined, 'OK');
-  }
-  else {
+  } else {
     backOrHome();
   }
 }
@@ -31,7 +31,8 @@ function saveClick() {
 /** Set the selected option by the supplied label
  *  @returns true if option found and selected, otherwise false. */
 function selectByLabel(select, label) {
-  for (const option of select.options) {
+  for (let index = 0; index < select.options.length; index += 1) {
+    const option = select.options[index];
     if (option.label === label) {
       option.selected = true;
       return true;
@@ -71,8 +72,8 @@ function setupEventListeners() {
   document.getElementById('defaults').addEventListener('click', defaultsClick);
   document.getElementById('save').addEventListener('click', saveClick);
   document.getElementById('cancel').addEventListener('click', backOrHome);
-  document.getElementById('theme').addEventListener('change',
-    (event) => setTheme(event.target.value));
+  document.getElementById('theme')
+    .addEventListener('change', (event) => setTheme(event.target.value));
 }
 
 /** DOM Content Loaded event handler. */

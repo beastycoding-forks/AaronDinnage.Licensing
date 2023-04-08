@@ -1,8 +1,10 @@
+@import 'common.css';
+
 h1 {
-  font-size: 24px;
-  padding-left: 28px;
   background: url(/media/sprites.svg#rename) left center no-repeat;
   background-size: 20px;
+  font-size: 24px;
+  padding-left: 28px;
 }
 
 a.header-link {
@@ -20,17 +22,18 @@ a.header-link:hover {
 
 table {
   border-spacing: 0;
-  margin-top: 0;
   margin-bottom: 16px;
+  margin-top: 0;
 }
 
 tr:nth-child(2n) {
   background-color: rgba(127, 127, 255, .15);
 }
 
-th, td {
-  text-align: left;
+th,
+td {
   padding: 4px 16px 4px 8px;
+  text-align: left;
 }
 
 th {
@@ -41,6 +44,7 @@ td {
   vertical-align: top;
 }
 
-th:last-of-type, td:last-of-type {
+th:last-of-type,
+td:last-of-type {
   text-align: right;
 }

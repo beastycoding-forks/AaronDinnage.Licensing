@@ -1,11 +1,7 @@
-/// <reference path="common.js" />
-/* global isEmbedded */
+import { isEmbedded } from './common.js';
 
-/** DOM Content Loaded event handler. */
-function DOMContentLoaded() {
+document.addEventListener('DOMContentLoaded', () => {
   if (isEmbedded()) {
     document.getElementById('menu').style.display = 'none';
   }
-}
-
-document.addEventListener('DOMContentLoaded', DOMContentLoaded);
+});

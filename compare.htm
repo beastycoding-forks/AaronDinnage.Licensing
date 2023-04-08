@@ -30,12 +30,9 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
     <link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png" />
-    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="/css/common.min.css" />
-    <link rel="stylesheet" href="/css/compare.min.css" />
-    <script src="/js/common.min.js"></script>
-    <script src="/js/compare.min.js"></script>
+    <link rel="stylesheet" href="/css/compare.css" />
+    <script src="/js/compare.js" type="module"></script>
     <title>Compare Diagrams | M365 Maps</title>
   </head>
   <body>
@@ -46,14 +43,6 @@
 
     <div id="diagrams">
       <div class="divider"></div>
-      <span class="diagram-header">Client Access License (CAL)</span>
-      <div class="diagram-set">
-        <label><input type="checkbox" value="CAL" />CAL</label>
-        <label><input type="checkbox" value="CAL-Main-Bridges" />Main Bridges</label>
-        <label><input type="checkbox" value="CAL-Other-Bridges" />Other Bridges</label>
-        <label><input type="checkbox" value="CAL-All-Bridges" />All Bridges</label>
-      </div>
-      <div class="divider"></div>
       <span class="diagram-header">Enterprise Mobility + Security (EMS)</span>
       <div class="diagram-set">
         <label><input type="checkbox" value="EMS-All" />All</label>
@@ -61,6 +50,7 @@
         <label><input type="checkbox" value="EMS-E3" />E3</label>
         <label><input type="checkbox" value="EMS-E5" />E5</label>
         <label><input type="checkbox" value="Azure-AD-Premium" />Azure AD</label>
+        <label><input type="checkbox" value="Intune" />Intune</label>
       </div>
       <div class="divider"></div>
       <span class="diagram-header">Microsoft 365 Apps</span>
@@ -74,8 +64,8 @@
       <div class="diagram-set">
         <label><input type="checkbox" value="Microsoft-365-Business" />All</label>
         <label><input type="checkbox" value="Microsoft-365-Business-Basic" />Basic</label>
-        <label><input type="checkbox" value="Microsoft-365-Business-Premium" />Premium</label>
         <label><input type="checkbox" value="Microsoft-365-Business-Standard" />Standard</label>
+        <label><input type="checkbox" value="Microsoft-365-Business-Premium" />Premium</label>
       </div>
       <div class="divider"></div>
       <span class="diagram-header">Microsoft 365 Consumer</span>
@@ -122,6 +112,8 @@
         <label><input type="checkbox" value="Microsoft-Defender-for-Business" />Business</label>
         <label><input type="checkbox" value="Microsoft-Defender-for-Endpoint" />Endpoint</label>
         <label><input type="checkbox" value="Microsoft-Defender-for-Office-365" />Office 365</label>
+        <label><input type="checkbox" value="Microsoft-Defender-for-Servers" />Servers</label>
+        <label title="Cloud Security Posture Management"><input type="checkbox" value="Microsoft-Defender-CSPM" />CSPM</label>
         <label title="Vulnerability Management"><input type="checkbox" value="Microsoft-Defender-Vulnerability-Management" />Vuln Mgmt</label>
       </div>
       <div class="divider"></div>
@@ -159,7 +151,7 @@
       <div class="diagram-set">
         <label><input type="checkbox" value="Windows-Enterprise" />Enterprise</label>
         <label><input type="checkbox" value="Windows-Pro" />Pro</label>
-        <label><input type="checkbox" value="Windows-VL" />VL</label>
+        <label title="Volume Licensing"><input type="checkbox" value="Windows-VL" />VL</label>
         <label><input type="checkbox" value="Windows-365" />Windows 365</label>
         <label title="Windows 365 Comparison"><input type="checkbox" value="Windows-365-Compare" />W365 Compare</label>
       </div>
@@ -171,6 +163,15 @@
         <label><input type="checkbox" value="Office-365-US-Government-G1" />G1</label>
         <label><input type="checkbox" value="Office-365-US-Government-F3" />F3</label>
       </div> -->
+
+      <div class="divider"></div>
+      <span class="diagram-header">Client Access License (CAL)</span>
+      <div class="diagram-set">
+        <label><input type="checkbox" value="CAL" />CAL</label>
+        <label><input type="checkbox" value="CAL-Main-Bridges" />Main Bridges</label>
+        <label><input type="checkbox" value="CAL-Other-Bridges" />Other Bridges</label>
+        <label><input type="checkbox" value="CAL-All-Bridges" />All Bridges</label>
+      </div>
       <div class="divider"></div>
       <span class="diagram-header">Saved Diagrams</span>
       <div id="saved-diagrams" class="diagram-set"></div>

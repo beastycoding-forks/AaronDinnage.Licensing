@@ -1,3 +1,5 @@
+@import 'common.css';
+
 /* Print Styles */
 
 @media print {
@@ -10,10 +12,10 @@
   }
 
   svg {
-    left: 0 !important;
-    top: 0 !important;
-    right: 0 !important;
     bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
   }
 }
 
@@ -21,17 +23,17 @@
 
 html,
 body {
-  width: 100%;
   height: 100%;
   margin: 0;
+  width: 100%;
 }
 
 body {
+  overflow: hidden;
+  position: relative;
+  touch-action: none;
   -webkit-user-select: none;
   user-select: none;
-  touch-action: none;
-  position: relative;
-  overflow: hidden;
 }
 
 h1 {
@@ -41,6 +43,10 @@ h1 {
 svg {
   display: none;
   position: absolute;
+}
+
+.m365maps-select {
+  filter: drop-shadow(0 0 10px #ff0);
 }
 
 #file-selector {
@@ -141,27 +147,27 @@ svg {
 /* Menu */
 
 #menu {
-  right: -500px;
-  width: min-content;
-  transition: 0.3s;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   gap: 14px;
+  justify-content: space-evenly;
+  right: -500px;
+  transition: 0.3s;
+  width: min-content;
 }
 
-#menu>button {
-  margin: 0;
-  border: 0;
+#menu > button {
   border-radius: 0;
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
+  border: 0;
   color: var(--accent-color);
   font-weight: normal;
+  height: 16px;
+  margin: 0;
+  min-width: 16px;
+  width: 16px;
 }
 
-#menu>button.active {
+#menu > button.active {
   filter: hue-rotate(45deg);
 }
 
@@ -230,6 +236,12 @@ svg {
   background-size: 16px;
 }
 
+#menu-map {
+  background: url(/media/sprites.svg#map) center no-repeat;
+  background-size: 16px;
+  display: none;
+}
+
 #menu-export-svg,
 #menu-export-png {
   background: url(/media/sprites.svg#export) left center no-repeat;
@@ -249,57 +261,57 @@ svg {
 /* Edit Controls */
 
 #edit-controls {
-  top: -300px;
   background: var(--menu-color);
+  border-bottom-left-radius: 8px;
   border-bottom: 0.5px solid var(--border-color);
   border-left: 0.5px solid var(--border-color);
-  padding: 8px;
-  right: 0;
-  border-bottom-left-radius: 8px;
-  position: fixed;
-  z-index: 1;
-  transform: translateZ(0);
-  transition: 0.5s;
-  min-width: 138px;
   color: var(--accent-color);
   display: flex;
   flex-direction: column;
+  min-width: 138px;
+  padding: 8px;
+  position: fixed;
+  right: 0;
+  top: -300px;
+  transform: translateZ(0);
+  transition: 0.5s;
+  z-index: 1;
 }
 
-#edit-controls>div {
-  border: 1px solid transparent;
+#edit-controls > div {
   border-radius: 4px;
+  border: 1px solid transparent;
   display: flex;
   flex-direction: row;
 }
 
-#edit-controls>div>button {
-  margin: 0;
+#edit-controls > div > button {
   border: 0;
   color: var(--accent-color);
   font-weight: normal;
+  height: 32px;
+  margin: 0;
   padding-left: 40px;
   text-align: left;
-  height: 32px;
   width: 100%;
 }
 
-#edit-controls>div:not(.active) {
+#edit-controls > div:not(.active) {
   filter: saturate(0);
 }
 
-#edit-controls>div.active {
+#edit-controls > div.active {
   border: 1px solid var(--accent-color);
 }
 
-#edit-controls>div>input[type=color] {
-  height: 24px;
-  width: 28px;
-  border: 0;
+#edit-controls > div > input[type=color] {
   border-radius: 2px;
-  padding: 0;
-  margin: auto 4px;
+  border: 0;
   cursor: pointer;
+  height: 24px;
+  margin: auto 4px;
+  padding: 0;
+  width: 28px;
 }
 
 #menu-highlight {
@@ -335,46 +347,46 @@ svg {
 /* Image Controls */
 
 #image-controls {
-  top: -300px;
+  align-items: center;
   background: var(--menu-color);
+  border-bottom-left-radius: 8px;
   border-bottom: 0.5px solid var(--border-color);
   border-left: 0.5px solid var(--border-color);
-  padding: 8px;
-  right: 0;
-  border-bottom-left-radius: 8px;
-  position: fixed;
-  z-index: 1;
+  color: var(--accent-color);
+  display: grid;
+  gap: 12px 8px;
+  grid-auto-flow: row;
+  grid-auto-rows: min-content;
+  justify-content: space-evenly;
   line-height: 16px;
+  padding: 8px;
+  position: fixed;
+  right: 0;
+  top: -300px;
   transform: translateZ(0);
   transition: 0.5s;
   width: min-content;
-  color: var(--accent-color);
-  display: grid;
-  grid-auto-rows: min-content;
-  grid-auto-flow: row;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 12px 8px;
+  z-index: 1;
 }
 
-#image-controls>label {
-  grid-row: auto;
+#image-controls > label {
   grid-column: 1;
+  grid-row: auto;
 }
 
-#image-controls>input {
-  grid-row: auto;
+#image-controls > input {
   grid-column: 2;
+  grid-row: auto;
 }
 
 #image-controls-buttons {
-  margin-top: 4px;
-  grid-row: auto;
   grid-column: span 2;
+  grid-row: auto;
   justify-self: right;
+  margin-top: 4px;
 }
 
-#image-controls-buttons>button {
+#image-controls-buttons > button {
   margin: 0 0 0 8px;
   padding: 8px 8px 6px 32px;
 }
@@ -390,26 +402,27 @@ svg {
 }
 
 /* Zoom Controls */
+
 #zoom-controls {
-  position: fixed;
-  bottom: 16px;
-  right: 8px;
   background: var(--menu-color);
-  border: 0.5px solid var(--border-color);
   border-radius: 8px;
+  border: 0.5px solid var(--border-color);
+  bottom: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   gap: 4px;
+  justify-content: space-evenly;
+  position: fixed;
+  right: 8px;
   z-index: 1;
 }
 
-#zoom-controls>button {
-  margin: 0;
+#zoom-controls > button {
   border: 0;
-  width: 22px;
   height: 22px;
+  margin: 0;
   min-width: 22px;
+  width: 22px;
 }
 
 #menu-zoom-in {

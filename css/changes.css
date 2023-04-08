@@ -1,8 +1,10 @@
+@import 'common.css';
+
 h1 {
-  font-size: 24px;
-  padding-left: 28px;
   background: url(/media/sprites.svg#changes) left center no-repeat;
   background-size: 20px;
+  font-size: 24px;
+  padding-left: 28px;
 }
 
 h2 {
@@ -21,8 +23,8 @@ ul {
 a.top-link {
   background: url(/media/sprites.svg#top) left center no-repeat;
   background-size: 16px;
-  padding-left: 20px;
   margin: 0 2px;
+  padding-left: 20px;
   text-align: center;
 }
 

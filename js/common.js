@@ -1,11 +1,45 @@
-/* eslint-disable no-unused-vars */
-
-/** Storage name constants. */
-const StoreName = {
-  Flags: 'flags',
-  Settings: 'settings',
-  MatrixSelection: 'matrix-selection',
-};
+/** Image gallery of clip art for inserting an image. */
+const GLYPH_GALLERY = [
+  { label: 'Tick', image: '/media/glyphs/tick.svg' },
+  { label: 'Cross', image: '/media/glyphs/cross.svg' },
+  { label: 'Blocked', image: '/media/glyphs/blocked.svg' },
+  { label: 'Star', image: '/media/glyphs/star.svg' },
+  { label: 'Heart', image: '/media/glyphs/heart.svg' },
+  { label: 'Priority: High', image: '/media/glyphs/label-priority-high.svg' },
+  { label: 'Priority: Medium', image: '/media/glyphs/label-priority-medium.svg' },
+  { label: 'Priority: Low', image: '/media/glyphs/label-priority-low.svg' },
+  { label: 'Priority: Must Have', image: '/media/glyphs/label-mscw-m.svg' },
+  { label: 'Priority: Should Have', image: '/media/glyphs/label-mscw-s.svg' },
+  { label: 'Priority: Could Have', image: '/media/glyphs/label-mscw-c.svg' },
+  { label: 'Priority: Won\'t Have', image: '/media/glyphs/label-mscw-w.svg' },
+  { label: 'Label: Will', image: '/media/glyphs/label-will.svg' },
+  { label: 'Label: In progress', image: '/media/glyphs/label-in-progress.svg' },
+  { label: 'Label: Testing', image: '/media/glyphs/label-testing.svg' },
+  { label: 'Label: Purchasing', image: '/media/glyphs/label-purchasing.svg' },
+  { label: 'Label: Purchased', image: '/media/glyphs/label-purchased.svg' },
+  { label: 'Label: On hold', image: '/media/glyphs/label-on-hold.svg' },
+  { label: 'Label: Not yet', image: '/media/glyphs/label-not-yet.svg' },
+  { label: 'Label: Done', image: '/media/glyphs/label-done.svg' },
+  { label: 'Label: Future', image: '/media/glyphs/label-future.svg' },
+  { label: 'Completion: 0%', image: '/media/glyphs/percent-0.svg' },
+  { label: 'Completion: 25%', image: '/media/glyphs/percent-1.svg' },
+  { label: 'Completion: 50%', image: '/media/glyphs/percent-2.svg' },
+  { label: 'Completion: 75%', image: '/media/glyphs/percent-3.svg' },
+  { label: 'Completion: 100%', image: '/media/glyphs/percent-4.svg' },
+  { label: 'Phase: 1', image: '/media/glyphs/label-phase-1.svg' },
+  { label: 'Phase: 2', image: '/media/glyphs/label-phase-2.svg' },
+  { label: 'Phase: 3', image: '/media/glyphs/label-phase-3.svg' },
+  { label: 'Status: Green', image: '/media/glyphs/status-green.svg' },
+  { label: 'Status: Yellow', image: '/media/glyphs/status-yellow.svg' },
+  { label: 'Status: Red', image: '/media/glyphs/status-red.svg' },
+  { label: 'Traffic Light: Green', image: '/media/glyphs/light-green.svg' },
+  { label: 'Traffic Light: Yellow', image: '/media/glyphs/light-yellow.svg' },
+  { label: 'Traffic Light: Red', image: '/media/glyphs/light-red.svg' },
+  { label: 'Arrow: Up', image: '/media/glyphs/arrow-up.svg' },
+  { label: 'Arrow: Down', image: '/media/glyphs/arrow-down.svg' },
+  { label: 'Arrow: Left', image: '/media/glyphs/arrow-left.svg' },
+  { label: 'Arrow: Right', image: '/media/glyphs/arrow-right.svg' },
+];
 
 /** Mouse button constants. */
 const Mouse = {
@@ -53,6 +87,13 @@ const Settings = {
   Zoom: '',
 };
 
+/** Storage name constants. */
+const StoreName = {
+  Flags: 'flags',
+  Settings: 'settings',
+  MatrixSelection: 'matrix-selection',
+};
+
 /** Is this running in Chrome on iOS? */
 // const isIOSChrome = navigator.userAgent.includes('CriOS');
 
@@ -60,23 +101,29 @@ const Settings = {
 // const isIOSEdge = navigator.userAgent.includes('EdgiOS');
 
 /** Is this running on an iOS device? */
-const isIOS = window.navigator.userAgent.includes('iPad') ||
-  window.navigator.userAgent.includes('iPhone');
+const isIOS = window.navigator.userAgent.includes('iPhone')
+  || window.navigator.userAgent.includes('iPad')
+  || window.navigator.userAgent.includes('iPod');
+
+/** Callback to execute after Modal list item click. */
+let modalListItemCallback;
+
+/** Callback to execute after Modal button 1 press. */
+let modalOption1Callback;
+
+/** Callback to execute after Modal button 2 press. */
+let modalOption2Callback;
+
+/** Callback to execute after Modal button 3 press. */
+let modalOption3Callback;
 
 /** Is the modal dialog visible? */
 let modalVisible = false;
 
-/** Callback to execute after Modal button 1 press. */
-let modalOption1Callback = undefined;
-
-/** Callback to execute after Modal button 2 press. */
-let modalOption2Callback = undefined;
-
-/** Callback to execute after Modal button 3 press. */
-let modalOption3Callback = undefined;
-
-/** Callback to execute after Modal list item click. */
-let modalListItemCallback = undefined;
+/** Returns true if the modal dialog is currently visible. */
+function isModalVisible() {
+  return modalVisible;
+}
 
 /** Handle the modal button 1 click. */
 function modalOption1Click(event) {
@@ -144,6 +191,7 @@ function setupModal() {
   const modalInput = document.createElement('input');
   modalInput.id = 'modal-input';
   modalInput.type = 'text';
+  modalInput.placeholder = 'Enter text here';
   modalContent.appendChild(modalInput);
   modalInput.addEventListener('keyup', modalInputKeyUpEvent);
 
@@ -159,6 +207,7 @@ function setupModal() {
   const modalColour = document.createElement('input');
   modalColour.type = 'color';
   modalColour.id = 'modal-colour';
+  modalColour.title = 'Select colour';
   modalContent.appendChild(modalColour);
 
   const modalList = document.createElement('fieldset');
@@ -194,12 +243,10 @@ function setupModal() {
 /** Registers the service worker. */
 function registerServiceWorker() {
   if (navigator.serviceWorker) {
-    navigator.serviceWorker.addEventListener('controllerchange',
-      function controllerChange() {
-        window.location.reload();
-      });
+    navigator.serviceWorker
+      .addEventListener('controllerchange', () => window.location.reload());
 
-    navigator.serviceWorker.register('sw.min.js');
+    navigator.serviceWorker.register('/sw.js');
   }
 }
 
@@ -282,23 +329,23 @@ function saveSettings() {
 
 /** Sets the theme to Light, Dark, or follows the System. */
 function setTheme(theme) {
-  switch (theme) {
-    case 'Light': document.documentElement.className = 'theme-light'; break;
-    case 'Dark': document.documentElement.className = 'theme-dark'; break;
-    case 'System':
+  switch (theme.toLowerCase()) {
+    case 'light': document.documentElement.className = 'theme-light'; break;
+    case 'dark': document.documentElement.className = 'theme-dark'; break;
+    case 'system':
     default:
-      document.documentElement.className = window.
-        matchMedia('(prefers-color-scheme: dark)').
-        matches ? 'theme-dark' : 'theme-light';
+      document.documentElement.className = window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .matches ? 'theme-dark' : 'theme-light';
       break;
   }
 }
 
 /** Theme Change event to track the System theme. */
 function themeChange(event) {
-  if (Settings.Theme === 'System') {
-    const htmlElement = document.getElementsByTagName('html')[0];
-    htmlElement.className = (event.matches ? 'theme-dark' : 'theme-light');
+  if (Settings.Theme.toLowerCase() === 'system') {
+    document.documentElement.className = event.matches
+      ? 'theme-dark' : 'theme-light';
   }
 }
 
@@ -317,49 +364,80 @@ function downloadBlob(filename, blob) {
   anchor.download = filename;
   anchor.href = URL.createObjectURL(blob);
 
-  setTimeout(
-    function revokeAnchorBlob() {
-      URL.revokeObjectURL(anchor.href);
-    }, 45000);
+  setTimeout(() => URL.revokeObjectURL(anchor.href), 45000);
 
   anchor.click();
 }
 
-/** Exports an SVG XML as a PNG file download. */
-function exportPng(filename, svgXml, background) {
+/** Converts SVG XML into a Data URL. */
+function svgToDataUrl(svgXml) {
+  // return `data:image/svg+xml;base64,${btoa(svgXml)}`;
+  // return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgXml)}`;
+
+  const data = svgXml
+    .replace(/%/g, '%25') // Must be first or it will mangle subsequent %'s
+    .replace(/"/g, '%22')
+    .replace(/#/g, '%23')
+    .replace(/'/g, '%27')
+    .replace(/\n/g, '');
+
+  return `data:image/svg+xml;charset=utf-8,${data}`;
+}
+
+/** Exports SVG XML as a PNG file download. */
+function exportPng(filename, svgXml, width, height) {
   const canvas = document.createElement('canvas');
   const canvasContext = canvas.getContext('2d');
 
   const image = new Image();
   image.onload = function onload() {
-    canvas.width = image.width;
-    canvas.height = image.height;
+    let exportWidth = (width ?? this.width) * 2;
+    let exportHeight = (height ?? this.height) * 2;
 
-    if (background) {
-      canvasContext.fillStyle = background;
-      canvasContext.rect(0, 0, canvas.width, canvas.height);
-      canvasContext.fill();
+    // Scale to an 8,192 x 8,192 maximum image size.
+    if (exportWidth > 8192 || exportHeight > 8192) {
+      const ratio = exportWidth / exportHeight;
+      if (ratio > 1) {
+        exportWidth = 8192;
+        exportHeight = Math.round(8192 / ratio);
+      } else {
+        exportWidth = Math.round(8192 * ratio);
+        exportHeight = 8192;
+      }
     }
+
+    canvas.width = exportWidth;
+    canvas.height = exportHeight;
 
     if ('imageSmoothingQuality' in canvasContext) {
       canvasContext.imageSmoothingQuality = 'high';
     }
 
-    canvasContext.drawImage(image, 0, 0);
-
-    canvas.toBlob(
-      function canvasBlob(blob) {
-        downloadBlob(filename, blob);
-      }
-    );
+    if (isIOS) {
+      // https://bugs.webkit.org/show_bug.cgi?id=39059
+      setTimeout(() => {
+        canvasContext.drawImage(this, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob((blob) => downloadBlob(filename, blob));
+      }, 100);
+    } else {
+      canvasContext.drawImage(this, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob((blob) => downloadBlob(filename, blob));
+    }
   };
 
-  image.src = 'data:image/svg+xml;base64,' + btoa(svgXml);
+  image.src = svgToDataUrl(svgXml);
 }
 
 /** Exports an SVG XML as an SVG file download. */
 function exportSvg(filename, svgXml) {
   const blob = new Blob([svgXml], { type: 'image/svg+xml' });
+  downloadBlob(filename, blob);
+}
+
+/** Exports a Feature Map as a JSON file download. */
+function exportFM(filename, features) {
+  const json = JSON.stringify(features);
+  const blob = new Blob([json], { type: 'application/json' });
   downloadBlob(filename, blob);
 }
 
@@ -388,7 +466,7 @@ function getStringBetween(source, from, open, close) {
 function getFiltersCss(brightness, contrast, hue, saturation) {
   const b = (brightness / 10.0).toFixed(1);
   const c = (contrast / 10.0).toFixed(1);
-  const h = hue + 'deg';
+  const h = `${hue}deg`;
   const s = (saturation / 10.0).toFixed(1);
 
   return `brightness(${b}) contrast(${c}) hue-rotate(${h}) saturate(${s})`;
@@ -396,7 +474,7 @@ function getFiltersCss(brightness, contrast, hue, saturation) {
 
 /** Takes the browser back one page or if there is no history, to home. */
 function backOrHome() {
-  if (window.history.length <= 1 || document.referrer === '') {
+  if (window.history.length <= 1 || !document.referrer) {
     window.location.href = '/';
   } else {
     window.history.back();
@@ -405,19 +483,30 @@ function backOrHome() {
 
 /** A custom modal diaglog with configurable input, 3 option buttons, and
  *  callbacks. */
-function showModalDialog(messageHtml = 'ERROR',
-  showInput = false, defaultInput = '',
-  option1Name = '', option1Callback = undefined,
-  option2Name = '', option2Callback = undefined,
-  option3Name = '', option3Callback = undefined,
-  showImageList = false, imageListItems = [], imageListCallback = undefined,
-  showColourPicker = false, colourPickerLabel = '', defaultColour = undefined) {
-  // showDropDown = false, dropDownItems = [], selectedDropDownItem = undefined) {
+function showModalDialog(
+  messageHtml = 'ERROR',
+  showInput = false,
+  defaultInput = '',
+  option1Name = '',
+  option1Callback = undefined,
+  option2Name = '',
+  option2Callback = undefined,
+  option3Name = '',
+  option3Callback = undefined,
+  listItems = undefined,
+  listCallback = undefined,
+  showColourPicker = false,
+  colourPickerLabel = '',
+  defaultColour = undefined,
+) {
+  // showDropDown = false,
+  // dropDownItems = [],
+  // selectedDropDownItem = undefined,
 
   modalOption1Callback = option1Callback;
   modalOption2Callback = option2Callback;
   modalOption3Callback = option3Callback;
-  modalListItemCallback = imageListCallback;
+  modalListItemCallback = listCallback;
 
   document.getElementById('modal-text').innerHTML = messageHtml;
 
@@ -426,48 +515,41 @@ function showModalDialog(messageHtml = 'ERROR',
   modalInput.style.display = showInput ? 'inline-block' : 'none';
 
   const modalList = document.getElementById('modal-list');
-  while (modalList.lastChild)
+  while (modalList.lastChild) {
     modalList.removeChild(modalList.lastChild);
+  }
 
-  if (showImageList) {
-    const buttonImageMaxSize = 32;
-    const backgroundCentre = 54 / 2; // Based on the Padding-Left on the buttons
+  if (listItems) {
+    listItems.forEach((item) => {
+      const listItem = document.createElement('div');
+      listItem.className = 'modal-list-item';
+      modalList.appendChild(listItem);
+      listItem.addEventListener('click', modalListItemClick);
 
-    for (const item of imageListItems) {
-      const listItem = document.createElement('button');
-      listItem.value = item.value;
-      listItem.textContent = item.label;
-
-      let url = item.value;
-      const regex = new RegExp('(.*)\\(([0-9]+)x([0-9]+)\\)');
-      const result = regex.exec(url);
-      if (result.length !== 0) {
-        url = result[1];
-        let width = result[2];
-        let height = result[3];
-
-        if (width > buttonImageMaxSize || height > buttonImageMaxSize) {
-          scale = Math.min(
-            buttonImageMaxSize / width, buttonImageMaxSize / height);
-          width *= scale;
-          height *= scale;
-        }
-
-        listItem.style.backgroundSize = `${width}px ${height}px`;
-
-        if (width < buttonImageMaxSize) {
-          const offset = backgroundCentre - ((buttonImageMaxSize - width) / 2);
-          listItem.style.backgroundPositionX = `${offset}px`;
-        }
+      if (item.id) {
+        listItem.dataset.id = item.id;
       }
 
-      listItem.style.backgroundImage = `url(${url})`;
-      modalList.appendChild(listItem);
+      if (item.image) {
+        const image = document.createElement('img');
+        image.src = item.image;
+        image.alt = item.label;
+        listItem.appendChild(image);
+        listItem.dataset.image = item.image;
+      }
 
-      listItem.addEventListener('click', modalListItemClick);
-    }
+      const label = document.createElement('span');
+      label.textContent = item.label;
+      listItem.appendChild(label);
+
+      if (item.tooltip) {
+        label.title = item.tooltip;
+      }
+    });
+    modalList.style.display = '';
+  } else {
+    modalList.style.display = 'none';
   }
-  modalList.style.display = showImageList ? 'grid' : 'none';
 
   // const modalSelect = document.getElementById('modal-select');
   // while (modalSelect.lastChild)
@@ -490,7 +572,7 @@ function showModalDialog(messageHtml = 'ERROR',
   const modalColour = document.getElementById('modal-colour');
   if (showColourPicker) {
     modalColourLabel.textContent = colourPickerLabel;
-    modalColour.value = defaultColour ? defaultColour : Colours[0];
+    modalColour.value = defaultColour || 'Red';
   }
   modalColourLabel.style.display = showColourPicker ? 'inline-block' : 'none';
   modalColour.style.display = showColourPicker ? 'inline-block' : 'none';
@@ -549,7 +631,12 @@ function getHexForColour(colour) {
   return canvasContext.fillStyle;
 }
 
-/** Detect if the site is embedded in a frame. */
+/** Used by Array.sort to sort integers. */
+function sortIntegers(a, b) {
+  return parseInt(a, 10) - parseInt(b, 10);
+}
+
+/** Detect if the site is embedded in a frame, such as Microsoft Teams App. */
 function isEmbedded() {
   try {
     return (window.self !== window.top);
@@ -563,3 +650,11 @@ registerServiceWorker();
 loadSettings();
 setTheme(Settings.Theme);
 addThemeListener(themeChange);
+
+export {
+  GLYPH_GALLERY, isIOS, Mouse, Settings, StoreName,
+  backOrHome, createElementFromHtml, defaultSettings, downloadBlob, exportFM,
+  exportPng, exportSvg, getFiltersCss, getHexForColour, getModalColourValue,
+  getModalInputText, getStringBetween, isEmbedded, isModalVisible, saveSettings,
+  setTheme, setupModal, showModalDialog, sortIntegers, svgToDataUrl,
+};

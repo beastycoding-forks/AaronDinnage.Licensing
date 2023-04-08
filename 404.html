@@ -1,333 +1,275 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, follow" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png" />
-    <title>404 Not Found | M365 Maps</title>
-    <style>
-      html {
-        font-family: Arial;
-        font-size: 18px;
-      }
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, follow" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
+<link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="stylesheet" href="/css/error.css" />
+<title>404 Not Found | M365 Maps</title>
+</head>
+<body>
+  <img src="/media/favicon.svg" width="128" height="128" alt="" />
+  <h1>404 Not Found</h1>
+  <p id="not-found-text">
+    The resource you requested was not found.<br /><br />
+  </p>
+  <p id="moved-text">
+    The resource you requested has moved, please update your links to the new location:<br /><br />
+    <a id="moved-link" href=""></a>
+  </p>
+  <p>
+    Go to <a href="/">home page</a>
+  </p>
 
-      body {
-        text-align: center;
-        margin: 16px 0 0 0;
-      }
+  <script>
+    const map = [
+      { old: '/Azure-AD-Premium.htm', new: '/files/Azure-AD-Premium.htm' },
+      { old: '/Azure-AD-Premium.pdf', new: '/files/Azure-AD-Premium.pdf' },
+      { old: '/Azure-AD-Premium.png', new: '/files/Azure-AD-Premium.png' },
+      { old: '/Azure-AD-Premium.svg', new: '/files/Azure-AD-Premium.svg' },
+      { old: '/CAL-All-Bridges.htm', new: '/files/CAL-All-Bridges.htm' },
+      { old: '/CAL-All-Bridges.pdf', new: '/files/CAL-All-Bridges.pdf' },
+      { old: '/CAL-All-Bridges.png', new: '/files/CAL-All-Bridges.png' },
+      { old: '/CAL-All-Bridges.svg', new: '/files/CAL-All-Bridges.svg' },
+      { old: '/CAL-Main-Bridges.htm', new: '/files/CAL-Main-Bridges.htm' },
+      { old: '/CAL-Main-Bridges.pdf', new: '/files/CAL-Main-Bridges.pdf' },
+      { old: '/CAL-Main-Bridges.png', new: '/files/CAL-Main-Bridges.png' },
+      { old: '/CAL-Main-Bridges.svg', new: '/files/CAL-Main-Bridges.svg' },
+      { old: '/CAL-Other-Bridges.htm', new: '/files/CAL-Other-Bridges.htm' },
+      { old: '/CAL-Other-Bridges.pdf', new: '/files/CAL-Other-Bridges.pdf' },
+      { old: '/CAL-Other-Bridges.png', new: '/files/CAL-Other-Bridges.png' },
+      { old: '/CAL-Other-Bridges.svg', new: '/files/CAL-Other-Bridges.svg' },
+      { old: '/CALs.htm', new: '/files/CALs.htm' },
+      { old: '/CALs.pdf', new: '/files/CALs.pdf' },
+      { old: '/CALs.png', new: '/files/CALs.png' },
+      { old: '/CALs.svg', new: '/files/CALs.svg' },
+      { old: '/EMS%20Enterprise%20-%20Simple.htm', new: '/files/EMS-Simple.htm' },
+      { old: '/EMS%20Enterprise%20-%20Simple.pdf', new: '/files/EMS-Simple.pdf' },
+      { old: '/EMS%20Enterprise%20-%20Simple.png', new: '/files/EMS-Simple.png' },
+      { old: '/EMS%20Enterprise%20-%20Simple.svg', new: '/files/EMS-Simple.svg' },
+      { old: '/EMS%20Enterprise.htm', new: '/files/EMS-All.htm' },
+      { old: '/EMS%20Enterprise.pdf', new: '/files/EMS-All.pdf' },
+      { old: '/EMS%20Enterprise.png', new: '/files/EMS-All.png' },
+      { old: '/EMS%20Enterprise.svg', new: '/files/EMS-All.svg' },
+      { old: '/EMS-Enterprise-E3.htm', new: '/files/EMS-E3.htm' },
+      { old: '/EMS-Enterprise-E3.pdf', new: '/files/EMS-E3.pdf' },
+      { old: '/EMS-Enterprise-E3.png', new: '/files/EMS-E3.png' },
+      { old: '/EMS-Enterprise-E3.svg', new: '/files/EMS-E3.svg' },
+      { old: '/EMS-Enterprise-E5.htm', new: '/files/EMS-E5.htm' },
+      { old: '/EMS-Enterprise-E5.pdf', new: '/files/EMS-E5.pdf' },
+      { old: '/EMS-Enterprise-E5.png', new: '/files/EMS-E5.png' },
+      { old: '/EMS-Enterprise-E5.svg', new: '/files/EMS-E5.svg' },
+      { old: '/Microsoft%20365%20Apps%20for%20Business.htm', new: '/files/Microsoft-365-Apps-Business.htm' },
+      { old: '/Microsoft%20365%20Apps%20for%20Business.pdf', new: '/files/Microsoft-365-Apps-Business.pdf' },
+      { old: '/Microsoft%20365%20Apps%20for%20Business.png', new: '/files/Microsoft-365-Apps-Business.png' },
+      { old: '/Microsoft%20365%20Apps%20for%20Business.svg', new: '/files/Microsoft-365-Apps-Business.svg' },
+      { old: '/Microsoft%20365%20Apps%20for%20Enterprise.htm', new: '/files/Microsoft-365-Apps-Enterprise.htm' },
+      { old: '/Microsoft%20365%20Apps%20for%20Enterprise.pdf', new: '/files/Microsoft-365-Apps-Enterprise.pdf' },
+      { old: '/Microsoft%20365%20Apps%20for%20Enterprise.png', new: '/files/Microsoft-365-Apps-Enterprise.png' },
+      { old: '/Microsoft%20365%20Apps%20for%20Enterprise.svg', new: '/files/Microsoft-365-Apps-Enterprise.svg' },
+      { old: '/Microsoft%20365%20Apps.htm', new: '/files/Microsoft-365-Apps-All.htm' },
+      { old: '/Microsoft%20365%20Apps.pdf', new: '/files/Microsoft-365-Apps-All.pdf' },
+      { old: '/Microsoft%20365%20Apps.png', new: '/files/Microsoft-365-Apps-All.png' },
+      { old: '/Microsoft%20365%20Apps.svg', new: '/files/Microsoft-365-Apps-All.svg' },
+      { old: '/Microsoft%20365%20Business%20Basic.htm', new: '/files/Microsoft-365-Business-Basic.htm' },
+      { old: '/Microsoft%20365%20Business%20Basic.pdf', new: '/files/Microsoft-365-Business-Basic.pdf' },
+      { old: '/Microsoft%20365%20Business%20Basic.png', new: '/files/Microsoft-365-Business-Basic.png' },
+      { old: '/Microsoft%20365%20Business%20Basic.svg', new: '/files/Microsoft-365-Business-Basic.svg' },
+      { old: '/Microsoft%20365%20Business%20Premium.htm', new: '/files/Microsoft-365-Business-Premium.htm' },
+      { old: '/Microsoft%20365%20Business%20Premium.pdf', new: '/files/Microsoft-365-Business-Premium.pdf' },
+      { old: '/Microsoft%20365%20Business%20Premium.png', new: '/files/Microsoft-365-Business-Premium.png' },
+      { old: '/Microsoft%20365%20Business%20Premium.svg', new: '/files/Microsoft-365-Business-Premium.svg' },
+      { old: '/Microsoft%20365%20Business%20Standard.htm', new: '/files/Microsoft-365-Business-Standard.htm' },
+      { old: '/Microsoft%20365%20Business%20Standard.pdf', new: '/files/Microsoft-365-Business-Standard.pdf' },
+      { old: '/Microsoft%20365%20Business%20Standard.png', new: '/files/Microsoft-365-Business-Standard.png' },
+      { old: '/Microsoft%20365%20Business%20Standard.svg', new: '/files/Microsoft-365-Business-Standard.svg' },
+      { old: '/Microsoft%20365%20Business.htm', new: '/files/Microsoft-365-Business-All.htm' },
+      { old: '/Microsoft%20365%20Business.pdf', new: '/files/Microsoft-365-Business-All.pdf' },
+      { old: '/Microsoft%20365%20Business.png', new: '/files/Microsoft-365-Business-All.png' },
+      { old: '/Microsoft%20365%20Business.svg', new: '/files/Microsoft-365-Business-All.svg' },
+      { old: '/Microsoft%20365%20Consumer.htm', new: '/files/Microsoft-365-Consumer.htm' },
+      { old: '/Microsoft%20365%20Consumer.pdf', new: '/files/Microsoft-365-Consumer.pdf' },
+      { old: '/Microsoft%20365%20Consumer.png', new: '/files/Microsoft-365-Consumer.png' },
+      { old: '/Microsoft%20365%20Consumer.svg', new: '/files/Microsoft-365-Consumer.svg' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.htm', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.htm' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.pdf', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.pdf' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.png', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.png' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.svg', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.svg' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.htm', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.htm' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.pdf', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.pdf' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.png', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.png' },
+      { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.svg', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.svg' },
+      { old: '/Microsoft%20365%20Education.htm', new: '/files/Microsoft-365-Education-All.htm' },
+      { old: '/Microsoft%20365%20Education.pdf', new: '/files/Microsoft-365-Education-All.pdf' },
+      { old: '/Microsoft%20365%20Education.png', new: '/files/Microsoft-365-Education-All.png' },
+      { old: '/Microsoft%20365%20Education.svg', new: '/files/Microsoft-365-Education-All.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E3.htm', new: '/files/Microsoft-365-E3.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E3.pdf', new: '/files/Microsoft-365-E3.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E3.png', new: '/files/Microsoft-365-E3.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E3.svg', new: '/files/Microsoft-365-E3.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E5.htm', new: '/files/Microsoft-365-E5.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E5.pdf', new: '/files/Microsoft-365-E5.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E5.png', new: '/files/Microsoft-365-E5.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20E5.svg', new: '/files/Microsoft-365-E5.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F1.htm', new: '/files/Microsoft-365-F1.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F1.pdf', new: '/files/Microsoft-365-F1.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F1.png', new: '/files/Microsoft-365-F1.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F1.svg', new: '/files/Microsoft-365-F1.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F3.htm', new: '/files/Microsoft-365-F3.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F3.pdf', new: '/files/Microsoft-365-F3.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F3.png', new: '/files/Microsoft-365-F3.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F3.svg', new: '/files/Microsoft-365-F3.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F5.htm', new: '/files/Microsoft-365-F5.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F5.pdf', new: '/files/Microsoft-365-F5.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F5.png', new: '/files/Microsoft-365-F5.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20F5.svg', new: '/files/Microsoft-365-F5.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.htm', new: '/files/Microsoft-365-Frontline-All.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.pdf', new: '/files/Microsoft-365-Frontline-All.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.png', new: '/files/Microsoft-365-Frontline-All.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.svg', new: '/files/Microsoft-365-Frontline-All.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.htm', new: '/files/Microsoft-365-Enterprise-Landscape.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.pdf', new: '/files/Microsoft-365-Enterprise-Landscape.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.png', new: '/files/Microsoft-365-Enterprise-Landscape.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.svg', new: '/files/Microsoft-365-Enterprise-Landscape.svg' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Venn.htm', new: '/files/Microsoft-365-Enterprise-Venn.htm' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Venn.pdf', new: '/files/Microsoft-365-Enterprise-Venn.pdf' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Venn.png', new: '/files/Microsoft-365-Enterprise-Venn.png' },
+      { old: '/Microsoft%20365%20Enterprise%20-%20Venn.svg', new: '/files/Microsoft-365-Enterprise-Venn.svg' },
+      { old: '/Microsoft%20365%20Enterprise.htm', new: '/files/Microsoft-365-Enterprise-All.htm' },
+      { old: '/Microsoft%20365%20Enterprise.pdf', new: '/files/Microsoft-365-Enterprise-All.pdf' },
+      { old: '/Microsoft%20365%20Enterprise.png', new: '/files/Microsoft-365-Enterprise-All.png' },
+      { old: '/Microsoft%20365%20Enterprise.svg', new: '/files/Microsoft-365-Enterprise-All.svg' },
+      { old: '/Microsoft%20365%20Personal%20and%20Family.htm', new: '/files/Microsoft-365-Personal-and-Family.htm' },
+      { old: '/Microsoft%20365%20Personal%20and%20Family.pdf', new: '/files/Microsoft-365-Personal-and-Family.pdf' },
+      { old: '/Microsoft%20365%20Personal%20and%20Family.png', new: '/files/Microsoft-365-Personal-and-Family.png' },
+      { old: '/Microsoft%20365%20Personal%20and%20Family.svg', new: '/files/Microsoft-365-Personal-and-Family.svg' },
+      { old: '/Microsoft%20Project.htm', new: '/files/Microsoft-Project.htm' },
+      { old: '/Microsoft%20Project.pdf', new: '/files/Microsoft-Project.pdf' },
+      { old: '/Microsoft%20Project.png', new: '/files/Microsoft-Project.png' },
+      { old: '/Microsoft%20Project.svg', new: '/files/Microsoft-Project.svg' },
+      { old: '/Microsoft-365-Education-A1-(Legacy).htm', new: '/files/Microsoft-365-Education-A1-\(Legacy\).htm' },
+      { old: '/Microsoft-365-Education-A1-(Legacy).pdf', new: '/files/Microsoft-365-Education-A1-\(Legacy\).pdf' },
+      { old: '/Microsoft-365-Education-A1-(Legacy).png', new: '/files/Microsoft-365-Education-A1-\(Legacy\).png' },
+      { old: '/Microsoft-365-Education-A1-(Legacy).svg', new: '/files/Microsoft-365-Education-A1-\(Legacy\).svg' },
+      { old: '/Microsoft-365-Education-A1-for-Devices.htm', new: '/files/Microsoft-365-Education-A1-for-Devices.htm' },
+      { old: '/Microsoft-365-Education-A1-for-Devices.pdf', new: '/files/Microsoft-365-Education-A1-for-Devices.pdf' },
+      { old: '/Microsoft-365-Education-A1-for-Devices.png', new: '/files/Microsoft-365-Education-A1-for-Devices.png' },
+      { old: '/Microsoft-365-Education-A1-for-Devices.svg', new: '/files/Microsoft-365-Education-A1-for-Devices.svg' },
+      { old: '/Microsoft-365-Education-A3.htm', new: '/files/Microsoft-365-Education-A3.htm' },
+      { old: '/Microsoft-365-Education-A3.pdf', new: '/files/Microsoft-365-Education-A3.pdf' },
+      { old: '/Microsoft-365-Education-A3.png', new: '/files/Microsoft-365-Education-A3.png' },
+      { old: '/Microsoft-365-Education-A3.svg', new: '/files/Microsoft-365-Education-A3.svg' },
+      { old: '/Microsoft-365-Education-A5.htm', new: '/files/Microsoft-365-Education-A5.htm' },
+      { old: '/Microsoft-365-Education-A5.pdf', new: '/files/Microsoft-365-Education-A5.pdf' },
+      { old: '/Microsoft-365-Education-A5.png', new: '/files/Microsoft-365-Education-A5.png' },
+      { old: '/Microsoft-365-Education-A5.svg', new: '/files/Microsoft-365-Education-A5.svg' },
+      { old: '/Microsoft-Defender-for-Business.htm', new: '/files/Microsoft-Defender-for-Business.htm' },
+      { old: '/Microsoft-Defender-for-Business.pdf', new: '/files/Microsoft-Defender-for-Business.pdf' },
+      { old: '/Microsoft-Defender-for-Business.png', new: '/files/Microsoft-Defender-for-Business.png' },
+      { old: '/Microsoft-Defender-for-Business.svg', new: '/files/Microsoft-Defender-for-Business.svg' },
+      { old: '/Microsoft-Defender-for-Endpoint.htm', new: '/files/Microsoft-Defender-for-Endpoint.htm' },
+      { old: '/Microsoft-Defender-for-Endpoint.pdf', new: '/files/Microsoft-Defender-for-Endpoint.pdf' },
+      { old: '/Microsoft-Defender-for-Endpoint.png', new: '/files/Microsoft-Defender-for-Endpoint.png' },
+      { old: '/Microsoft-Defender-for-Endpoint.svg', new: '/files/Microsoft-Defender-for-Endpoint.svg' },
+      { old: '/Microsoft-Defender-for-Office-365.htm', new: '/files/Microsoft-Defender-for-Office-365.htm' },
+      { old: '/Microsoft-Defender-for-Office-365.pdf', new: '/files/Microsoft-Defender-for-Office-365.pdf' },
+      { old: '/Microsoft-Defender-for-Office-365.png', new: '/files/Microsoft-Defender-for-Office-365.png' },
+      { old: '/Microsoft-Defender-for-Office-365.svg', new: '/files/Microsoft-Defender-for-Office-365.svg' },
+      { old: '/Microsoft-Visio.htm', new: '/files/Microsoft-Visio.htm' },
+      { old: '/Microsoft-Visio.pdf', new: '/files/Microsoft-Visio.pdf' },
+      { old: '/Microsoft-Visio.png', new: '/files/Microsoft-Visio.png' },
+      { old: '/Microsoft-Visio.svg', new: '/files/Microsoft-Visio.svg' },
+      { old: '/Office%20365%20Education%20-%20Simple.htm', new: '/files/Office-365-Education-Simple.htm' },
+      { old: '/Office%20365%20Education%20-%20Simple.pdf', new: '/files/Office-365-Education-Simple.pdf' },
+      { old: '/Office%20365%20Education%20-%20Simple.png', new: '/files/Office-365-Education-Simple.png' },
+      { old: '/Office%20365%20Education%20-%20Simple.svg', new: '/files/Office-365-Education-Simple.svg' },
+      { old: '/Office%20365%20Education.htm', new: '/files/Office-365-Education-All.htm' },
+      { old: '/Office%20365%20Education.pdf', new: '/files/Office-365-Education-All.pdf' },
+      { old: '/Office%20365%20Education.png', new: '/files/Office-365-Education-All.png' },
+      { old: '/Office%20365%20Education.svg', new: '/files/Office-365-Education-All.svg' },
+      { old: '/Office%20365%20Enterprise%20-%20E1.htm', new: '/files/Office-365-E1.htm' },
+      { old: '/Office%20365%20Enterprise%20-%20E1.pdf', new: '/files/Office-365-E1.pdf' },
+      { old: '/Office%20365%20Enterprise%20-%20E1.png', new: '/files/Office-365-E1.png' },
+      { old: '/Office%20365%20Enterprise%20-%20E1.svg', new: '/files/Office-365-E1.svg' },
+      { old: '/Office%20365%20Enterprise%20-%20F3.htm', new: '/files/Office-365-F3.htm' },
+      { old: '/Office%20365%20Enterprise%20-%20F3.pdf', new: '/files/Office-365-F3.pdf' },
+      { old: '/Office%20365%20Enterprise%20-%20F3.png', new: '/files/Office-365-F3.png' },
+      { old: '/Office%20365%20Enterprise%20-%20F3.svg', new: '/files/Office-365-F3.svg' },
+      { old: '/Office%20365%20Enterprise%20-%20Simple.htm', new: '/files/Office-365-Enterprise-Simple.htm' },
+      { old: '/Office%20365%20Enterprise%20-%20Simple.pdf', new: '/files/Office-365-Enterprise-Simple.pdf' },
+      { old: '/Office%20365%20Enterprise%20-%20Simple.png', new: '/files/Office-365-Enterprise-Simple.png' },
+      { old: '/Office%20365%20Enterprise%20-%20Simple.svg', new: '/files/Office-365-Enterprise-Simple.svg' },
+      { old: '/Office%20365%20Enterprise.htm', new: '/files/Office-365-Enterprise-All.htm' },
+      { old: '/Office%20365%20Enterprise.pdf', new: '/files/Office-365-Enterprise-All.pdf' },
+      { old: '/Office%20365%20Enterprise.png', new: '/files/Office-365-Enterprise-All.png' },
+      { old: '/Office%20365%20Enterprise.svg', new: '/files/Office-365-Enterprise-All.svg' },
+      { old: '/Office%20365%20US%20Government%20-%20F3.htm', new: '/files/Office-365-US-Government-F3.htm' },
+      { old: '/Office%20365%20US%20Government%20-%20F3.pdf', new: '/files/Office-365-US-Government-F3.pdf' },
+      { old: '/Office%20365%20US%20Government%20-%20F3.png', new: '/files/Office-365-US-Government-F3.png' },
+      { old: '/Office%20365%20US%20Government%20-%20F3.svg', new: '/files/Office-365-US-Government-F3.svg' },
+      { old: '/Office%20365%20US%20Government%20-%20G1.htm', new: '/files/Office-365-US-Government-G1.htm' },
+      { old: '/Office%20365%20US%20Government%20-%20G1.pdf', new: '/files/Office-365-US-Government-G1.pdf' },
+      { old: '/Office%20365%20US%20Government%20-%20G1.png', new: '/files/Office-365-US-Government-G1.png' },
+      { old: '/Office%20365%20US%20Government%20-%20G1.svg', new: '/files/Office-365-US-Government-G1.svg' },
+      { old: '/Office%20365%20US%20Government.htm', new: '/files/Office-365-US-Government-All.htm' },
+      { old: '/Office%20365%20US%20Government.pdf', new: '/files/Office-365-US-Government-All.pdf' },
+      { old: '/Office%20365%20US%20Government.png', new: '/files/Office-365-US-Government-All.png' },
+      { old: '/Office%20365%20US%20Government.svg', new: '/files/Office-365-US-Government-All.svg' },
+      { old: '/Office%20Consumer.htm', new: '/files/Office-Consumer.htm' },
+      { old: '/Office%20Consumer.pdf', new: '/files/Office-Consumer.pdf' },
+      { old: '/Office%20Consumer.png', new: '/files/Office-Consumer.png' },
+      { old: '/Office%20Consumer.svg', new: '/files/Office-Consumer.svg' },
+      { old: '/Office-365-E3.htm', new: '/files/Office-365-E3.htm' },
+      { old: '/Office-365-E3.pdf', new: '/files/Office-365-E3.pdf' },
+      { old: '/Office-365-E3.png', new: '/files/Office-365-E3.png' },
+      { old: '/Office-365-E3.svg', new: '/files/Office-365-E3.svg' },
+      { old: '/Office-365-E5.htm', new: '/files/Office-365-E5.htm' },
+      { old: '/Office-365-E5.pdf', new: '/files/Office-365-E5.pdf' },
+      { old: '/Office-365-E5.png', new: '/files/Office-365-E5.png' },
+      { old: '/Office-365-E5.svg', new: '/files/Office-365-E5.svg' },
+      { old: '/Windows%2010%20-%20Enterprise.htm', new: '/files/Windows-Enterprise.htm' },
+      { old: '/Windows%2010%20-%20Enterprise.pdf', new: '/files/Windows-Enterprise.pdf' },
+      { old: '/Windows%2010%20-%20Enterprise.png', new: '/files/Windows-Enterprise.png' },
+      { old: '/Windows%2010%20-%20Enterprise.svg', new: '/files/Windows-Enterprise.svg' },
+      { old: '/Windows%2010%20-%20Pro.htm', new: '/files/Windows-Pro.htm' },
+      { old: '/Windows%2010%20-%20Pro.pdf', new: '/files/Windows-Pro.pdf' },
+      { old: '/Windows%2010%20-%20Pro.png', new: '/files/Windows-Pro.png' },
+      { old: '/Windows%2010%20-%20Pro.svg', new: '/files/Windows-Pro.svg' },
+      { old: '/Windows%2010%20-%20VL.htm', new: '/files/Windows-VL.htm' },
+      { old: '/Windows%2010%20-%20VL.pdf', new: '/files/Windows-VL.pdf' },
+      { old: '/Windows%2010%20-%20VL.png', new: '/files/Windows-VL.png' },
+      { old: '/Windows%2010%20-%20VL.svg', new: '/files/Windows-VL.svg' },
+      { old: '/Windows-365.htm', new: '/files/Windows-365.htm' },
+      { old: '/Windows-365.pdf', new: '/files/Windows-365.pdf' },
+      { old: '/Windows-365.png', new: '/files/Windows-365.png' },
+      { old: '/Windows-365.svg', new: '/files/Windows-365.svg' },
 
-      a {
-        text-decoration: none;
-      }
+      { old: '/Microsoft%20365%20Enterprise%20License%20Map.pptx', new: '/Microsoft-365.pptx' },
+      { old: '/Microsoft%20365%20License%20Matrix.xlsx', new: '/Microsoft-365-Matrix.xlsx' },
+      { old: '/EMS%20Enterprise.vsdx', new: '/Enterprise-Mobility-Security.vsdx' },
+      { old: '/Microsoft%20365%20Apps.vsdx', new: '/Microsoft-365-Apps.vsdx' },
+      { old: '/Microsoft%20365%20Business.vsdx', new: '/Microsoft-365-Business.vsdx' },
+      { old: '/Microsoft%20365%20Consumer.vsdx', new: '/Microsoft-365-Consumer.vsdx' },
+      { old: '/Microsoft%20365%20Enterprise.vsdx', new: '/Microsoft-365-Enterprise.vsdx' },
+      { old: '/Microsoft%20Project.vsdx', new: '/Microsoft-Project.vsdx' },
+      { old: '/Microsoft%20Teams%20Rooms.vsdx', new: '/Microsoft-Teams.vsdx' },
+      { old: '/Office%20365%20Enterprise.vsdx', new: '/Office-365.vsdx' },
+      { old: '/Windows%2010%20.vsdx', new: '/Windows.vsdx' },
+    ];
 
-      img {
-        margin: 0 auto;
-      }
+    const redirect = map.find(x => x.old.toLowerCase() === window.location.pathname.toLowerCase());
+    if (redirect) {
+      document.getElementById('not-found-text').style.display = 'none';
+      document.getElementById('moved-text').style.display = 'block';
 
-      h1 {
-        font-size: 48px;
-        padding: 0;
-        margin: 16px auto 16px auto;
-        vertical-align: middle;
-      }
-
-      #moved-text {
-        display: none;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background-color: #000;
-          color: #d5d5d5;
-        }
-
-        a:link,
-        a:visited,
-        a:hover,
-        a:active {
-          color: #008cff;
-        }
-      }
-
-      @media (prefers-color-scheme: light) {
-        body {
-          background-color: #fff;
-          color: #333;
-        }
-
-        a:link,
-        a:visited,
-        a:hover,
-        a:active {
-          color: #0070f7;
-        }
-      }
-
-    </style>
-  </head>
-  <body>
-    <img src="/media/favicon.svg" width="128" height="128" alt="" />
-    <h1>404 Not Found</h1>
-    <p id="not-found-text">
-      The resource you requested was not found.<br /><br />
-    </p>
-    <p id="moved-text">
-      The resource you requested has moved, please update your links to the new location:<br /><br />
-      <a id="moved-link" href=""></a>
-    </p>
-    <p>
-      Go to <a href="/">home page</a>
-    </p>
-
-    <script>
-      const map = [
-        { old: '/Azure-AD-Premium.htm', new: '/files/Azure-AD-Premium.htm' },
-        { old: '/Azure-AD-Premium.pdf', new: '/files/Azure-AD-Premium.pdf' },
-        { old: '/Azure-AD-Premium.png', new: '/files/Azure-AD-Premium.png' },
-        { old: '/Azure-AD-Premium.svg', new: '/files/Azure-AD-Premium.svg' },
-        { old: '/CAL-All-Bridges.htm', new: '/files/CAL-All-Bridges.htm' },
-        { old: '/CAL-All-Bridges.pdf', new: '/files/CAL-All-Bridges.pdf' },
-        { old: '/CAL-All-Bridges.png', new: '/files/CAL-All-Bridges.png' },
-        { old: '/CAL-All-Bridges.svg', new: '/files/CAL-All-Bridges.svg' },
-        { old: '/CAL-Main-Bridges.htm', new: '/files/CAL-Main-Bridges.htm' },
-        { old: '/CAL-Main-Bridges.pdf', new: '/files/CAL-Main-Bridges.pdf' },
-        { old: '/CAL-Main-Bridges.png', new: '/files/CAL-Main-Bridges.png' },
-        { old: '/CAL-Main-Bridges.svg', new: '/files/CAL-Main-Bridges.svg' },
-        { old: '/CAL-Other-Bridges.htm', new: '/files/CAL-Other-Bridges.htm' },
-        { old: '/CAL-Other-Bridges.pdf', new: '/files/CAL-Other-Bridges.pdf' },
-        { old: '/CAL-Other-Bridges.png', new: '/files/CAL-Other-Bridges.png' },
-        { old: '/CAL-Other-Bridges.svg', new: '/files/CAL-Other-Bridges.svg' },
-        { old: '/CALs.htm', new: '/files/CALs.htm' },
-        { old: '/CALs.pdf', new: '/files/CALs.pdf' },
-        { old: '/CALs.png', new: '/files/CALs.png' },
-        { old: '/CALs.svg', new: '/files/CALs.svg' },
-        { old: '/EMS%20Enterprise%20-%20Simple.htm', new: '/files/EMS-Simple.htm' },
-        { old: '/EMS%20Enterprise%20-%20Simple.pdf', new: '/files/EMS-Simple.pdf' },
-        { old: '/EMS%20Enterprise%20-%20Simple.png', new: '/files/EMS-Simple.png' },
-        { old: '/EMS%20Enterprise%20-%20Simple.svg', new: '/files/EMS-Simple.svg' },
-        { old: '/EMS%20Enterprise.htm', new: '/files/EMS-All.htm' },
-        { old: '/EMS%20Enterprise.pdf', new: '/files/EMS-All.pdf' },
-        { old: '/EMS%20Enterprise.png', new: '/files/EMS-All.png' },
-        { old: '/EMS%20Enterprise.svg', new: '/files/EMS-All.svg' },
-        { old: '/EMS-Enterprise-E3.htm', new: '/files/EMS-E3.htm' },
-        { old: '/EMS-Enterprise-E3.pdf', new: '/files/EMS-E3.pdf' },
-        { old: '/EMS-Enterprise-E3.png', new: '/files/EMS-E3.png' },
-        { old: '/EMS-Enterprise-E3.svg', new: '/files/EMS-E3.svg' },
-        { old: '/EMS-Enterprise-E5.htm', new: '/files/EMS-E5.htm' },
-        { old: '/EMS-Enterprise-E5.pdf', new: '/files/EMS-E5.pdf' },
-        { old: '/EMS-Enterprise-E5.png', new: '/files/EMS-E5.png' },
-        { old: '/EMS-Enterprise-E5.svg', new: '/files/EMS-E5.svg' },
-        { old: '/Microsoft%20365%20Apps%20for%20Business.htm', new: '/files/Microsoft-365-Apps-Business.htm' },
-        { old: '/Microsoft%20365%20Apps%20for%20Business.pdf', new: '/files/Microsoft-365-Apps-Business.pdf' },
-        { old: '/Microsoft%20365%20Apps%20for%20Business.png', new: '/files/Microsoft-365-Apps-Business.png' },
-        { old: '/Microsoft%20365%20Apps%20for%20Business.svg', new: '/files/Microsoft-365-Apps-Business.svg' },
-        { old: '/Microsoft%20365%20Apps%20for%20Enterprise.htm', new: '/files/Microsoft-365-Apps-Enterprise.htm' },
-        { old: '/Microsoft%20365%20Apps%20for%20Enterprise.pdf', new: '/files/Microsoft-365-Apps-Enterprise.pdf' },
-        { old: '/Microsoft%20365%20Apps%20for%20Enterprise.png', new: '/files/Microsoft-365-Apps-Enterprise.png' },
-        { old: '/Microsoft%20365%20Apps%20for%20Enterprise.svg', new: '/files/Microsoft-365-Apps-Enterprise.svg' },
-        { old: '/Microsoft%20365%20Apps.htm', new: '/files/Microsoft-365-Apps-All.htm' },
-        { old: '/Microsoft%20365%20Apps.pdf', new: '/files/Microsoft-365-Apps-All.pdf' },
-        { old: '/Microsoft%20365%20Apps.png', new: '/files/Microsoft-365-Apps-All.png' },
-        { old: '/Microsoft%20365%20Apps.svg', new: '/files/Microsoft-365-Apps-All.svg' },
-        { old: '/Microsoft%20365%20Business%20Basic.htm', new: '/files/Microsoft-365-Business-Basic.htm' },
-        { old: '/Microsoft%20365%20Business%20Basic.pdf', new: '/files/Microsoft-365-Business-Basic.pdf' },
-        { old: '/Microsoft%20365%20Business%20Basic.png', new: '/files/Microsoft-365-Business-Basic.png' },
-        { old: '/Microsoft%20365%20Business%20Basic.svg', new: '/files/Microsoft-365-Business-Basic.svg' },
-        { old: '/Microsoft%20365%20Business%20Premium.htm', new: '/files/Microsoft-365-Business-Premium.htm' },
-        { old: '/Microsoft%20365%20Business%20Premium.pdf', new: '/files/Microsoft-365-Business-Premium.pdf' },
-        { old: '/Microsoft%20365%20Business%20Premium.png', new: '/files/Microsoft-365-Business-Premium.png' },
-        { old: '/Microsoft%20365%20Business%20Premium.svg', new: '/files/Microsoft-365-Business-Premium.svg' },
-        { old: '/Microsoft%20365%20Business%20Standard.htm', new: '/files/Microsoft-365-Business-Standard.htm' },
-        { old: '/Microsoft%20365%20Business%20Standard.pdf', new: '/files/Microsoft-365-Business-Standard.pdf' },
-        { old: '/Microsoft%20365%20Business%20Standard.png', new: '/files/Microsoft-365-Business-Standard.png' },
-        { old: '/Microsoft%20365%20Business%20Standard.svg', new: '/files/Microsoft-365-Business-Standard.svg' },
-        { old: '/Microsoft%20365%20Business.htm', new: '/files/Microsoft-365-Business-All.htm' },
-        { old: '/Microsoft%20365%20Business.pdf', new: '/files/Microsoft-365-Business-All.pdf' },
-        { old: '/Microsoft%20365%20Business.png', new: '/files/Microsoft-365-Business-All.png' },
-        { old: '/Microsoft%20365%20Business.svg', new: '/files/Microsoft-365-Business-All.svg' },
-        { old: '/Microsoft%20365%20Consumer.htm', new: '/files/Microsoft-365-Consumer.htm' },
-        { old: '/Microsoft%20365%20Consumer.pdf', new: '/files/Microsoft-365-Consumer.pdf' },
-        { old: '/Microsoft%20365%20Consumer.png', new: '/files/Microsoft-365-Consumer.png' },
-        { old: '/Microsoft%20365%20Consumer.svg', new: '/files/Microsoft-365-Consumer.svg' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.htm', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.htm' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.pdf', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.pdf' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.png', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.png' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits%20-%20Simple.svg', new: '/files/Microsoft-365-Education-Student-Use-Benefits-Simple.svg' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.htm', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.htm' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.pdf', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.pdf' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.png', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.png' },
-        { old: '/Microsoft%20365%20Education%20Student%20Use%20Benefits.svg', new: '/files/Microsoft-365-Education-Student-Use-Benefits-All.svg' },
-        { old: '/Microsoft%20365%20Education.htm', new: '/files/Microsoft-365-Education-All.htm' },
-        { old: '/Microsoft%20365%20Education.pdf', new: '/files/Microsoft-365-Education-All.pdf' },
-        { old: '/Microsoft%20365%20Education.png', new: '/files/Microsoft-365-Education-All.png' },
-        { old: '/Microsoft%20365%20Education.svg', new: '/files/Microsoft-365-Education-All.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E3.htm', new: '/files/Microsoft-365-E3.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E3.pdf', new: '/files/Microsoft-365-E3.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E3.png', new: '/files/Microsoft-365-E3.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E3.svg', new: '/files/Microsoft-365-E3.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E5.htm', new: '/files/Microsoft-365-E5.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E5.pdf', new: '/files/Microsoft-365-E5.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E5.png', new: '/files/Microsoft-365-E5.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20E5.svg', new: '/files/Microsoft-365-E5.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F1.htm', new: '/files/Microsoft-365-F1.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F1.pdf', new: '/files/Microsoft-365-F1.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F1.png', new: '/files/Microsoft-365-F1.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F1.svg', new: '/files/Microsoft-365-F1.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F3.htm', new: '/files/Microsoft-365-F3.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F3.pdf', new: '/files/Microsoft-365-F3.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F3.png', new: '/files/Microsoft-365-F3.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F3.svg', new: '/files/Microsoft-365-F3.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F5.htm', new: '/files/Microsoft-365-F5.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F5.pdf', new: '/files/Microsoft-365-F5.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F5.png', new: '/files/Microsoft-365-F5.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20F5.svg', new: '/files/Microsoft-365-F5.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.htm', new: '/files/Microsoft-365-Frontline-All.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.pdf', new: '/files/Microsoft-365-Frontline-All.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.png', new: '/files/Microsoft-365-Frontline-All.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Frontline.svg', new: '/files/Microsoft-365-Frontline-All.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.htm', new: '/files/Microsoft-365-Enterprise-Landscape.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.pdf', new: '/files/Microsoft-365-Enterprise-Landscape.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.png', new: '/files/Microsoft-365-Enterprise-Landscape.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Landscape.svg', new: '/files/Microsoft-365-Enterprise-Landscape.svg' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Venn.htm', new: '/files/Microsoft-365-Enterprise-Venn.htm' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Venn.pdf', new: '/files/Microsoft-365-Enterprise-Venn.pdf' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Venn.png', new: '/files/Microsoft-365-Enterprise-Venn.png' },
-        { old: '/Microsoft%20365%20Enterprise%20-%20Venn.svg', new: '/files/Microsoft-365-Enterprise-Venn.svg' },
-        { old: '/Microsoft%20365%20Enterprise.htm', new: '/files/Microsoft-365-Enterprise-All.htm' },
-        { old: '/Microsoft%20365%20Enterprise.pdf', new: '/files/Microsoft-365-Enterprise-All.pdf' },
-        { old: '/Microsoft%20365%20Enterprise.png', new: '/files/Microsoft-365-Enterprise-All.png' },
-        { old: '/Microsoft%20365%20Enterprise.svg', new: '/files/Microsoft-365-Enterprise-All.svg' },
-        { old: '/Microsoft%20365%20Personal%20and%20Family.htm', new: '/files/Microsoft-365-Personal-and-Family.htm' },
-        { old: '/Microsoft%20365%20Personal%20and%20Family.pdf', new: '/files/Microsoft-365-Personal-and-Family.pdf' },
-        { old: '/Microsoft%20365%20Personal%20and%20Family.png', new: '/files/Microsoft-365-Personal-and-Family.png' },
-        { old: '/Microsoft%20365%20Personal%20and%20Family.svg', new: '/files/Microsoft-365-Personal-and-Family.svg' },
-        { old: '/Microsoft%20Project.htm', new: '/files/Microsoft-Project.htm' },
-        { old: '/Microsoft%20Project.pdf', new: '/files/Microsoft-Project.pdf' },
-        { old: '/Microsoft%20Project.png', new: '/files/Microsoft-Project.png' },
-        { old: '/Microsoft%20Project.svg', new: '/files/Microsoft-Project.svg' },
-        { old: '/Microsoft-365-Education-A1-(Legacy).htm', new: '/files/Microsoft-365-Education-A1-\(Legacy\).htm' },
-        { old: '/Microsoft-365-Education-A1-(Legacy).pdf', new: '/files/Microsoft-365-Education-A1-\(Legacy\).pdf' },
-        { old: '/Microsoft-365-Education-A1-(Legacy).png', new: '/files/Microsoft-365-Education-A1-\(Legacy\).png' },
-        { old: '/Microsoft-365-Education-A1-(Legacy).svg', new: '/files/Microsoft-365-Education-A1-\(Legacy\).svg' },
-        { old: '/Microsoft-365-Education-A1-for-Devices.htm', new: '/files/Microsoft-365-Education-A1-for-Devices.htm' },
-        { old: '/Microsoft-365-Education-A1-for-Devices.pdf', new: '/files/Microsoft-365-Education-A1-for-Devices.pdf' },
-        { old: '/Microsoft-365-Education-A1-for-Devices.png', new: '/files/Microsoft-365-Education-A1-for-Devices.png' },
-        { old: '/Microsoft-365-Education-A1-for-Devices.svg', new: '/files/Microsoft-365-Education-A1-for-Devices.svg' },
-        { old: '/Microsoft-365-Education-A3.htm', new: '/files/Microsoft-365-Education-A3.htm' },
-        { old: '/Microsoft-365-Education-A3.pdf', new: '/files/Microsoft-365-Education-A3.pdf' },
-        { old: '/Microsoft-365-Education-A3.png', new: '/files/Microsoft-365-Education-A3.png' },
-        { old: '/Microsoft-365-Education-A3.svg', new: '/files/Microsoft-365-Education-A3.svg' },
-        { old: '/Microsoft-365-Education-A5.htm', new: '/files/Microsoft-365-Education-A5.htm' },
-        { old: '/Microsoft-365-Education-A5.pdf', new: '/files/Microsoft-365-Education-A5.pdf' },
-        { old: '/Microsoft-365-Education-A5.png', new: '/files/Microsoft-365-Education-A5.png' },
-        { old: '/Microsoft-365-Education-A5.svg', new: '/files/Microsoft-365-Education-A5.svg' },
-        { old: '/Microsoft-Defender-for-Business.htm', new: '/files/Microsoft-Defender-for-Business.htm' },
-        { old: '/Microsoft-Defender-for-Business.pdf', new: '/files/Microsoft-Defender-for-Business.pdf' },
-        { old: '/Microsoft-Defender-for-Business.png', new: '/files/Microsoft-Defender-for-Business.png' },
-        { old: '/Microsoft-Defender-for-Business.svg', new: '/files/Microsoft-Defender-for-Business.svg' },
-        { old: '/Microsoft-Defender-for-Endpoint.htm', new: '/files/Microsoft-Defender-for-Endpoint.htm' },
-        { old: '/Microsoft-Defender-for-Endpoint.pdf', new: '/files/Microsoft-Defender-for-Endpoint.pdf' },
-        { old: '/Microsoft-Defender-for-Endpoint.png', new: '/files/Microsoft-Defender-for-Endpoint.png' },
-        { old: '/Microsoft-Defender-for-Endpoint.svg', new: '/files/Microsoft-Defender-for-Endpoint.svg' },
-        { old: '/Microsoft-Defender-for-Office-365.htm', new: '/files/Microsoft-Defender-for-Office-365.htm' },
-        { old: '/Microsoft-Defender-for-Office-365.pdf', new: '/files/Microsoft-Defender-for-Office-365.pdf' },
-        { old: '/Microsoft-Defender-for-Office-365.png', new: '/files/Microsoft-Defender-for-Office-365.png' },
-        { old: '/Microsoft-Defender-for-Office-365.svg', new: '/files/Microsoft-Defender-for-Office-365.svg' },
-        { old: '/Microsoft-Visio.htm', new: '/files/Microsoft-Visio.htm' },
-        { old: '/Microsoft-Visio.pdf', new: '/files/Microsoft-Visio.pdf' },
-        { old: '/Microsoft-Visio.png', new: '/files/Microsoft-Visio.png' },
-        { old: '/Microsoft-Visio.svg', new: '/files/Microsoft-Visio.svg' },
-        { old: '/Office%20365%20Education%20-%20Simple.htm', new: '/files/Office-365-Education-Simple.htm' },
-        { old: '/Office%20365%20Education%20-%20Simple.pdf', new: '/files/Office-365-Education-Simple.pdf' },
-        { old: '/Office%20365%20Education%20-%20Simple.png', new: '/files/Office-365-Education-Simple.png' },
-        { old: '/Office%20365%20Education%20-%20Simple.svg', new: '/files/Office-365-Education-Simple.svg' },
-        { old: '/Office%20365%20Education.htm', new: '/files/Office-365-Education-All.htm' },
-        { old: '/Office%20365%20Education.pdf', new: '/files/Office-365-Education-All.pdf' },
-        { old: '/Office%20365%20Education.png', new: '/files/Office-365-Education-All.png' },
-        { old: '/Office%20365%20Education.svg', new: '/files/Office-365-Education-All.svg' },
-        { old: '/Office%20365%20Enterprise%20-%20E1.htm', new: '/files/Office-365-E1.htm' },
-        { old: '/Office%20365%20Enterprise%20-%20E1.pdf', new: '/files/Office-365-E1.pdf' },
-        { old: '/Office%20365%20Enterprise%20-%20E1.png', new: '/files/Office-365-E1.png' },
-        { old: '/Office%20365%20Enterprise%20-%20E1.svg', new: '/files/Office-365-E1.svg' },
-        { old: '/Office%20365%20Enterprise%20-%20F3.htm', new: '/files/Office-365-F3.htm' },
-        { old: '/Office%20365%20Enterprise%20-%20F3.pdf', new: '/files/Office-365-F3.pdf' },
-        { old: '/Office%20365%20Enterprise%20-%20F3.png', new: '/files/Office-365-F3.png' },
-        { old: '/Office%20365%20Enterprise%20-%20F3.svg', new: '/files/Office-365-F3.svg' },
-        { old: '/Office%20365%20Enterprise%20-%20Simple.htm', new: '/files/Office-365-Enterprise-Simple.htm' },
-        { old: '/Office%20365%20Enterprise%20-%20Simple.pdf', new: '/files/Office-365-Enterprise-Simple.pdf' },
-        { old: '/Office%20365%20Enterprise%20-%20Simple.png', new: '/files/Office-365-Enterprise-Simple.png' },
-        { old: '/Office%20365%20Enterprise%20-%20Simple.svg', new: '/files/Office-365-Enterprise-Simple.svg' },
-        { old: '/Office%20365%20Enterprise.htm', new: '/files/Office-365-Enterprise-All.htm' },
-        { old: '/Office%20365%20Enterprise.pdf', new: '/files/Office-365-Enterprise-All.pdf' },
-        { old: '/Office%20365%20Enterprise.png', new: '/files/Office-365-Enterprise-All.png' },
-        { old: '/Office%20365%20Enterprise.svg', new: '/files/Office-365-Enterprise-All.svg' },
-        { old: '/Office%20365%20US%20Government%20-%20F3.htm', new: '/files/Office-365-US-Government-F3.htm' },
-        { old: '/Office%20365%20US%20Government%20-%20F3.pdf', new: '/files/Office-365-US-Government-F3.pdf' },
-        { old: '/Office%20365%20US%20Government%20-%20F3.png', new: '/files/Office-365-US-Government-F3.png' },
-        { old: '/Office%20365%20US%20Government%20-%20F3.svg', new: '/files/Office-365-US-Government-F3.svg' },
-        { old: '/Office%20365%20US%20Government%20-%20G1.htm', new: '/files/Office-365-US-Government-G1.htm' },
-        { old: '/Office%20365%20US%20Government%20-%20G1.pdf', new: '/files/Office-365-US-Government-G1.pdf' },
-        { old: '/Office%20365%20US%20Government%20-%20G1.png', new: '/files/Office-365-US-Government-G1.png' },
-        { old: '/Office%20365%20US%20Government%20-%20G1.svg', new: '/files/Office-365-US-Government-G1.svg' },
-        { old: '/Office%20365%20US%20Government.htm', new: '/files/Office-365-US-Government-All.htm' },
-        { old: '/Office%20365%20US%20Government.pdf', new: '/files/Office-365-US-Government-All.pdf' },
-        { old: '/Office%20365%20US%20Government.png', new: '/files/Office-365-US-Government-All.png' },
-        { old: '/Office%20365%20US%20Government.svg', new: '/files/Office-365-US-Government-All.svg' },
-        { old: '/Office%20Consumer.htm', new: '/files/Office-Consumer.htm' },
-        { old: '/Office%20Consumer.pdf', new: '/files/Office-Consumer.pdf' },
-        { old: '/Office%20Consumer.png', new: '/files/Office-Consumer.png' },
-        { old: '/Office%20Consumer.svg', new: '/files/Office-Consumer.svg' },
-        { old: '/Office-365-E3.htm', new: '/files/Office-365-E3.htm' },
-        { old: '/Office-365-E3.pdf', new: '/files/Office-365-E3.pdf' },
-        { old: '/Office-365-E3.png', new: '/files/Office-365-E3.png' },
-        { old: '/Office-365-E3.svg', new: '/files/Office-365-E3.svg' },
-        { old: '/Office-365-E5.htm', new: '/files/Office-365-E5.htm' },
-        { old: '/Office-365-E5.pdf', new: '/files/Office-365-E5.pdf' },
-        { old: '/Office-365-E5.png', new: '/files/Office-365-E5.png' },
-        { old: '/Office-365-E5.svg', new: '/files/Office-365-E5.svg' },
-        { old: '/Windows%2010%20-%20Enterprise.htm', new: '/files/Windows-Enterprise.htm' },
-        { old: '/Windows%2010%20-%20Enterprise.pdf', new: '/files/Windows-Enterprise.pdf' },
-        { old: '/Windows%2010%20-%20Enterprise.png', new: '/files/Windows-Enterprise.png' },
-        { old: '/Windows%2010%20-%20Enterprise.svg', new: '/files/Windows-Enterprise.svg' },
-        { old: '/Windows%2010%20-%20Pro.htm', new: '/files/Windows-Pro.htm' },
-        { old: '/Windows%2010%20-%20Pro.pdf', new: '/files/Windows-Pro.pdf' },
-        { old: '/Windows%2010%20-%20Pro.png', new: '/files/Windows-Pro.png' },
-        { old: '/Windows%2010%20-%20Pro.svg', new: '/files/Windows-Pro.svg' },
-        { old: '/Windows%2010%20-%20VL.htm', new: '/files/Windows-VL.htm' },
-        { old: '/Windows%2010%20-%20VL.pdf', new: '/files/Windows-VL.pdf' },
-        { old: '/Windows%2010%20-%20VL.png', new: '/files/Windows-VL.png' },
-        { old: '/Windows%2010%20-%20VL.svg', new: '/files/Windows-VL.svg' },
-        { old: '/Windows-365.htm', new: '/files/Windows-365.htm' },
-        { old: '/Windows-365.pdf', new: '/files/Windows-365.pdf' },
-        { old: '/Windows-365.png', new: '/files/Windows-365.png' },
-        { old: '/Windows-365.svg', new: '/files/Windows-365.svg' },
-
-        { old: '/Microsoft%20365%20Enterprise%20License%20Map.pptx', new: '/Microsoft-365.pptx' },
-        { old: '/Microsoft%20365%20License%20Matrix.xlsx', new: '/Microsoft-365-Matrix.xlsx' },
-        { old: '/EMS%20Enterprise.vsdx', new: '/Enterprise-Mobility-Security.vsdx' },
-        { old: '/Microsoft%20365%20Apps.vsdx', new: '/Microsoft-365-Apps.vsdx' },
-        { old: '/Microsoft%20365%20Business.vsdx', new: '/Microsoft-365-Business.vsdx' },
-        { old: '/Microsoft%20365%20Consumer.vsdx', new: '/Microsoft-365-Consumer.vsdx' },
-        { old: '/Microsoft%20365%20Enterprise.vsdx', new: '/Microsoft-365-Enterprise.vsdx' },
-        { old: '/Microsoft%20Project.vsdx', new: '/Microsoft-Project.vsdx' },
-        { old: '/Microsoft%20Teams%20Rooms.vsdx', new: '/Microsoft-Teams.vsdx' },
-        { old: '/Office%20365%20Enterprise.vsdx', new: '/Office-365.vsdx' },
-        { old: '/Windows%2010%20.vsdx', new: '/Windows.vsdx' },
-      ];
-
-      const redirect = map.find(x => x.old === window.location.pathname);
-      if (redirect) {
-        document.getElementById('not-found-text').style.display = 'none';
-        document.getElementById('moved-text').style.display = 'block';
-
-        const link = document.getElementById('moved-link');
-        link.href = redirect.new;
-        link.innerText = window.location.origin + redirect.new;
-      }
-    </script>
-  </body>
+      const link = document.getElementById('moved-link');
+      link.href = redirect.new;
+      link.innerText = window.location.origin + redirect.new;
+    }
+  </script>
+</body>
 </html>

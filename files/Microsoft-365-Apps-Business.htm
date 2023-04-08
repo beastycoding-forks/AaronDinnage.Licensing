@@ -30,12 +30,9 @@
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
 <link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png" />
-<link rel="license" href="https://creativecommons.org/licenses/by/4.0/" />
 <link rel="manifest" href="/manifest.json" />
-<link rel="stylesheet" href="/css/common.min.css" />
-<link rel="stylesheet" href="/css/viewsvg.min.css" />
-<script src="/js/common.min.js"></script>
-<script src="/js/viewsvg.min.js"></script>
+<link rel="stylesheet" href="/css/viewsvg.css" />
+<script src="/js/viewsvg.js" type="module"></script>
 <title>Microsoft 365 Apps Business | M365 Maps</title>
 </head>
 <body oncontextmenu="return false">
@@ -50,6 +47,7 @@
 <button type="button" id="menu-back" accesskey="b" title="Back"></button>
 <button type="button" id="menu-flag" accesskey="g" title="Flag"></button>
 <button type="button" id="menu-save" accesskey="s" title="Save a copy"></button>
+<button type="button" id="menu-map" accesskey="f" title="Feature maps"></button>
 <button type="button" id="menu-controls" accesskey="c" title="Controls"></button>
 <button type="button" id="menu-edit" accesskey="t" title="Edit modes"></button>
 <button type="button" id="menu-download-pdf" title="Download PDF">PDF</button>
@@ -103,16 +101,16 @@
 <button type="button" id="menu-zoom-out" accesskey="-" title="Zoom out"></button>
 </div>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="416" height="304" viewBox="0 0 416 304" class="a"><style>
-.b {fill:#a5a5a5;fill-opacity:0.2;stroke:#a41500;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.2}
-.c {fill:#a41500;stroke:#a41500;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.2}
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="288" viewBox="0 0 384 288" class="a"><style>
+.b {fill:#a5a5a5;fill-opacity:0.2;stroke:#a41500;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+.c {fill:#a41500;stroke:#a41500;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
 .d {fill:#ffffff;font-family:Arial;font-size:1.5em;font-weight:bold}
 .e {fill:#a41500;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
-.f {fill:#ffffff;font-family:Arial;font-size:1.2em;font-weight:bold}
+.f {fill:#ffffff;font-family:Arial;font-size:1.16666em;font-weight:bold}
 .g {font-size:1em}
-.h {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.8}
-.i {fill:#7f7f7f;font-family:Arial;font-size:1em}
+.h {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+.i {fill:#7f7f7f;font-family:Arial;font-size:1.00001em}
 .a {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
-</style><rect x="16" y="16" width="384" height="272" rx="8" ry="8" class="b"/><a target="_blank" href="https://www.microsoft.com/microsoft-365/business/microsoft-365-apps-for-business"><rect x="16" y="16" width="384" height="32" rx="8" ry="8" class="c"/><text x="68" y="37.4" class="d">Microsoft 365 Apps for Business</text></a><a target="_blank" href="https://products.office.com/mobile/office"><rect x="48" y="176" width="96" height="80" rx="8" ry="8" class="e"/><text x="76.2" y="211.8" class="f">Office <tspan x="54.4" dy="1.2em" class="g">Mobile Apps</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/office365/servicedescriptions/office-online-service-description/office-online-service-description"><rect x="272" y="80" width="96" height="80" rx="8" ry="8" class="e"/><text x="300.2" y="107.4" class="f">Office<tspan x="281.5" dy="1.2em" class="g">for the Web</tspan><tspan x="284.6" dy="1.2em" class="g">(incl Visio)</tspan></text></a><a target="_blank" href="https://www.microsoft.com/microsoft-365/business/microsoft-365-apps-for-business"><rect x="160" y="80" width="96" height="80" rx="8" ry="8" class="e"/><text x="188.2" y="107.4" class="f">Office <tspan x="166" dy="1.2em" class="g">Applications </tspan><tspan x="171" dy="1.2em" class="g">(PC &amp; Mac)</tspan></text></a><a target="_blank" href="https://support.office.com/sway"><rect x="272" y="176" width="96" height="80" rx="8" ry="8" class="e"/><text x="302.1" y="220.2" class="f">Sway</text></a><a target="_blank" href="https://support.office.com/forms"><rect x="48" y="80" width="96" height="80" rx="8" ry="8" class="e"/><text x="64.5" y="115.8" class="f">Microsoft <tspan x="74.6" dy="1.2em" class="g">Forms</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/office365/servicedescriptions/onedrive-for-business-service-description"><rect x="160" y="176" width="96" height="80" rx="8" ry="8" class="e"/><text x="165.6" y="203.4" class="f">OneDrive for <tspan x="176.9" dy="1.2em" class="g">Business </tspan><tspan x="187.4" dy="1.2em" class="g">Plan 1</tspan></text></a><a target="_blank" href="https://m365maps.com/"><rect y="288" width="416" height="16" class="h"/><text x="326.6" y="299.6" class="i">m365maps.com</text></a></svg>
+</style><rect x="16" y="16" width="352" height="256" rx="8" ry="8" class="b"/><a target="_blank" href="https://www.microsoft.com/microsoft-365/business/microsoft-365-apps-for-business"><rect x="16" y="16" width="352" height="48" rx="8" ry="8" class="c" data-feature="BBAFE1A1-9AF8-1A43-8962-AA02F9A096E1"/><text x="52" y="45.4" class="d">Microsoft 365 Apps for Business</text></a><a target="_blank" href="https://www.microsoft.com/microsoft-365/mobile"><rect x="32" y="176" width="96" height="80" rx="8" ry="8" class="e" data-feature="6E7D2ACF-ECB0-0748-BC79-4D1931250DB5"/><text x="48.5" y="203.4" class="f">Microsoft <tspan x="44.2" dy="1.2em" class="g">365 Mobile </tspan><tspan x="66.4" dy="1.2em" class="g">App</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/office365/servicedescriptions/office-online-service-description/office-online-service-description"><rect x="256" y="80" width="96" height="80" rx="8" ry="8" class="e" data-feature="A0E8EC70-C846-AC45-B82C-D036D8F58F6A"/><text x="284.2" y="107.4" class="f">Office<tspan x="265.5" dy="1.2em" class="g">for the Web</tspan><tspan x="268.6" dy="1.2em" class="g">(incl Visio)</tspan></text></a><a target="_blank" href="https://www.microsoft.com/microsoft-365/business/microsoft-365-apps-for-business"><rect x="144" y="80" width="96" height="80" rx="8" ry="8" class="e"/><text x="172.2" y="107.4" class="f">Office <tspan x="150" dy="1.2em" class="g">Applications </tspan><tspan x="155" dy="1.2em" class="g">(PC &amp; Mac)</tspan></text></a><a target="_blank" href="https://support.office.com/sway"><rect x="256" y="176" width="96" height="80" rx="8" ry="8" class="e" data-feature="ED122C37-BAA0-8440-8FEB-21E7B044C63C"/><text x="286.1" y="220.2" class="f">Sway</text></a><a target="_blank" href="https://support.office.com/forms"><rect x="32" y="80" width="96" height="80" rx="8" ry="8" class="e" data-feature="BB2AC066-B28A-BB44-AE1B-D1FB72598720"/><text x="48.5" y="115.8" class="f">Microsoft <tspan x="58.6" dy="1.2em" class="g">Forms</tspan></text></a><a target="_blank" href="https://learn.microsoft.com/office365/servicedescriptions/onedrive-for-business-service-description"><rect x="144" y="176" width="96" height="80" rx="8" ry="8" class="e" data-feature="96B3F2C3-1008-4F45-B714-7B8DCBFB3119"/><text x="149.6" y="203.4" class="f">OneDrive for <tspan x="160.9" dy="1.2em" class="g">Business </tspan><tspan x="171.4" dy="1.2em" class="g">Plan 1</tspan></text></a><a target="_blank" href="https://m365maps.com/"><rect x="0" y="272" width="384" height="16" class="h"/><text x="294.6" y="283.6" class="i">m365maps.com</text></a></svg>
 </body>
 </html>

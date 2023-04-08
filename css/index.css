@@ -1,24 +1,11 @@
-body noscript {
-  font-weight: bold;
-  color: red;
-  margin: 10px 0;
-}
-
-#ie-warning {
-  display: none;
-  color: red;
-  border: 1px solid #ccc;
-  background-color: rgba(240, 192, 128, 0.25);
-  padding: 12px 12px 0 12px;
-  margin: 10px 0;
-}
+@import 'common.css';
 
 h1 {
-  font-size: 30px;
-  padding-left: 36px;
   background: url(/media/favicon.svg) left center no-repeat;
   background-size: 28px;
+  font-size: 30px;
   margin-bottom: 4px;
+  padding-left: 36px;
 }
 
 h2 {
@@ -29,42 +16,42 @@ h2 {
 
 #diagrams {
   display: grid;
-  grid-auto-rows: min-content;
+  gap: 2px 10px;
   grid-auto-columns: minmax(min-content, max-content) auto;
   grid-auto-flow: row;
-  gap: 2px 10px;
+  grid-auto-rows: min-content;
   margin-bottom: 12px;
 }
 
 div.divider {
-  grid-row: auto;
   grid-column: span 2;
+  grid-row: auto;
 }
 
 span.diagram-header {
-  grid-row: auto;
+  font-weight: bold;
   grid-column: 1;
+  grid-row: auto;
   justify-self: start;
   margin: 2px 0;
-  font-weight: bold;
 }
 
 div.diagram-set {
-  grid-row: auto;
-  grid-column: 2;
+  align-content: flex-start;
   display: flex;
   flex-flow: row wrap;
-  align-content: flex-start;
   gap: 4px 8px;
+  grid-column: 2;
+  grid-row: auto;
   margin: 0;
   padding: 0;
 }
 
 a.diagram-link {
   margin-top: 2px;
-  width: 108px;
   padding-left: 20px;
   white-space: nowrap;
+  width: 108px;
 }
 
 a.flagged {
@@ -77,78 +64,70 @@ a.flagged {
   padding-inline-start: 0;
 }
 
-#footer>li {
+#footer > li {
   margin-bottom: 8px;
+}
+
+#footer > li > a {
+  margin: 0 2px;
+  padding-left: 22px;
 }
 
 a.changes {
   background: url(/media/sprites.svg#changes) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 a.compare {
   background: url(/media/sprites.svg#compare) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 a.downloads {
   background: url(/media/sprites.svg#download) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 a.guide {
   background: url(/media/sprites.svg#guide) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 a.matrix {
   background: url(/media/sprites.svg#matrix) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
+}
+
+a.map {
+  background: url(/media/sprites.svg#map) left center no-repeat;
+  background-size: 16px;
 }
 
 a.related {
   background: url(/media/sprites.svg#related) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 a.renames {
   background: url(/media/sprites.svg#rename) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 a.settings {
   background: url(/media/sprites.svg#cog) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 a.saved {
   background: url(/media/sprites.svg#save) left center no-repeat;
   background-size: 16px;
-  padding-left: 22px;
-  margin: 0 2px;
 }
 
 /* Preview Images on Hover */
 
 /* a.diagram-link img {
-  position: absolute;
   display: none;
+  position: absolute;
   z-index: 6;
 }
 

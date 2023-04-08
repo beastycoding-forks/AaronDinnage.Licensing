@@ -1,6 +1,7 @@
 User-agent: *
-Disallow: /*.svg$
+Disallow: /files/*.svg$
 Disallow: /CNAME
 Disallow: /README.md
 Disallow: /404.html
+Disallow: /saved.htm
 Sitemap: https://m365maps.com/sitemap.xml

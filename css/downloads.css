@@ -1,8 +1,10 @@
+@import 'common.css';
+
 h1 {
-  font-size: 24px;
-  padding-left: 28px;
   background: url(/media/sprites.svg#download) left center no-repeat;
   background-size: 20px;
+  font-size: 24px;
+  padding-left: 28px;
 }
 
 h2 {
@@ -23,22 +25,22 @@ tr:nth-child(2n) {
 }
 
 .diagram {
-  text-align: left;
   padding: 4px 16px 4px 8px;
+  text-align: left;
 }
 
 .download {
   text-align: center;
 }
 
-.download>a {
-  content: "";
+.download > a {
   background: url(/media/sprites.svg#download) center no-repeat;
   background-size: 16px;
+  content: "";
   display: inline-block;
-  width: 16px;
   height: 16px;
   vertical-align: middle;
+  width: 16px;
 }
 
 th.download {

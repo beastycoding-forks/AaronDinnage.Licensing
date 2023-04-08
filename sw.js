@@ -1,6 +1,11 @@
-const Version = '20230102';
+/* eslint-env worker, serviceworker */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-console */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable prefer-arrow-callback */
 
-const CacheContent = [
+const CACHE_KEY = '20230409';
+const CACHE_CONTENT = [
   // Pages
   '/',
   '/changes.htm',
@@ -19,31 +24,33 @@ const CacheContent = [
   // '/robots.txt',
   // '/sitemap.xml',
   // Styles
-  '/css/changes.min.css',
-  '/css/common.min.css',
-  '/css/compare.min.css',
-  '/css/comparing.min.css',
-  '/css/downloads.min.css',
-  '/css/guide.min.css',
-  '/css/index.min.css',
-  '/css/matrix.min.css',
-  '/css/renames.min.css',
-  '/css/saved.min.css',
-  '/css/settings.min.css',
-  '/css/viewsvg.min.css',
+  '/css/changes.css',
+  '/css/common.css',
+  '/css/compare.css',
+  '/css/comparing.css',
+  '/css/downloads.css',
+  '/css/guide.css',
+  '/css/index.css',
+  '/css/maps.css',
+  '/css/matrix.css',
+  '/css/renames.css',
+  '/css/saved.css',
+  '/css/settings.css',
+  '/css/viewsvg.css',
   // Javascript
-  '/js/changes.min.js',
-  '/js/common.min.js',
-  '/js/compare.min.js',
-  '/js/comparing.min.js',
-  '/js/downloads.min.js',
-  '/js/guide.min.js',
-  '/js/index.min.js',
-  '/js/matrix.min.js',
-  '/js/renames.min.js',
-  '/js/saved.min.js',
-  '/js/settings.min.js',
-  '/js/viewsvg.min.js',
+  '/js/changes.js',
+  '/js/common.js',
+  '/js/compare.js',
+  '/js/comparing.js',
+  '/js/downloads.js',
+  '/js/guide.js',
+  '/js/index.js',
+  '/js/maps.js',
+  '/js/matrix.js',
+  '/js/renames.js',
+  '/js/saved.js',
+  '/js/settings.js',
+  '/js/viewsvg.js',
   // SVG
   '/media/favicon.svg',
   '/media/sprites.svg',
@@ -88,6 +95,46 @@ const CacheContent = [
   '/media/image-controls.png',
   '/media/page-comparing.png',
   '/media/page-matrix.png',
+  // Glyphs
+  '/media/glyphs/arrow-down.svg',
+  '/media/glyphs/arrow-left.svg',
+  '/media/glyphs/arrow-right.svg',
+  '/media/glyphs/arrow-up.svg',
+  '/media/glyphs/blocked.svg',
+  '/media/glyphs/cross.svg',
+  '/media/glyphs/heart.svg',
+  '/media/glyphs/label-done.svg',
+  '/media/glyphs/label-future.svg',
+  '/media/glyphs/label-in-progress.svg',
+  '/media/glyphs/label-mscw-c.svg',
+  '/media/glyphs/label-mscw-m.svg',
+  '/media/glyphs/label-mscw-s.svg',
+  '/media/glyphs/label-mscw-w.svg',
+  '/media/glyphs/label-not-yet.svg',
+  '/media/glyphs/label-on-hold.svg',
+  '/media/glyphs/label-phase-1.svg',
+  '/media/glyphs/label-phase-2.svg',
+  '/media/glyphs/label-phase-3.svg',
+  '/media/glyphs/label-priority-high.svg',
+  '/media/glyphs/label-priority-low.svg',
+  '/media/glyphs/label-priority-medium.svg',
+  '/media/glyphs/label-purchased.svg',
+  '/media/glyphs/label-purchasing.svg',
+  '/media/glyphs/label-testing.svg',
+  '/media/glyphs/label-will.svg',
+  '/media/glyphs/light-green.svg',
+  '/media/glyphs/light-red.svg',
+  '/media/glyphs/light-yellow.svg',
+  '/media/glyphs/percent-0.svg',
+  '/media/glyphs/percent-1.svg',
+  '/media/glyphs/percent-2.svg',
+  '/media/glyphs/percent-3.svg',
+  '/media/glyphs/percent-4.svg',
+  '/media/glyphs/star.svg',
+  '/media/glyphs/status-green.svg',
+  '/media/glyphs/status-red.svg',
+  '/media/glyphs/status-yellow.svg',
+  '/media/glyphs/tick.svg',
   // Diagram Pages
   '/files/Azure-AD-Premium.htm',
   '/files/CAL-All-Bridges.htm',
@@ -98,6 +145,7 @@ const CacheContent = [
   '/files/EMS-E3.htm',
   '/files/EMS-E5.htm',
   '/files/EMS-Simple.htm',
+  '/files/Intune.htm',
   '/files/Microsoft-365-Apps-All.htm',
   '/files/Microsoft-365-Apps-Business.htm',
   '/files/Microsoft-365-Apps-Enterprise.htm',
@@ -123,9 +171,11 @@ const CacheContent = [
   '/files/Microsoft-365-F5.htm',
   '/files/Microsoft-365-Frontline-All.htm',
   '/files/Microsoft-365-Personal-and-Family.htm',
+  '/files/Microsoft-Defender-CSPM.htm',
   '/files/Microsoft-Defender-for-Business.htm',
   '/files/Microsoft-Defender-for-Endpoint.htm',
   '/files/Microsoft-Defender-for-Office-365.htm',
+  '/files/Microsoft-Defender-for-Servers.htm',
   '/files/Microsoft-Defender-Vulnerability-Management.htm',
   '/files/Microsoft-Project.htm',
   '/files/Microsoft-Teams-Premium.htm',
@@ -153,65 +203,80 @@ const CacheContent = [
   '/files/Windows-Pro.htm',
   '/files/Windows-VL.htm',
 ];
+const CACHE_MATCH_OPTIONS = { ignoreVary: true, ignoreMethod: false, ignoreSearch: false };
+const HTML_OFFLINE = `<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/css/error.css" />
+    <title>Offline | M365 Maps</title>
+  </head>
+  <body>
+    <img src="/media/favicon.svg" width="128" height="128" alt="" />
+    <h1>Site Unreachable</h1>
+    <p>Pages you have already visited remain available while offline.</p>
+    <p>Go to <a href="/">home page</a></p>
+  </body>
+</html>`;
 
 /** Service Worker Install caches core app components and diagrams. */
 function swInstall(event) {
-  console.log('[Service Worker] Install', Version);
+  console.log('[SW] Install', CACHE_KEY);
 
   self.skipWaiting();
-
-  event.waitUntil(caches.has(Version).then(
-    function hasCache(has) {
-      if (!has) {
-        caches.open(Version).then(
-          function cacheAddAll(cache) {
-            cache.addAll(CacheContent.map(
-              function cacheMap(url) {
-                return new Request(url, { cache: 'no-cache' });
-              }
-            ));
-          }
-        );
-      }
-    }
-  ));
+  event.waitUntil(caches.open(CACHE_KEY).then((cache) => cache.addAll(CACHE_CONTENT)));
 }
 
 /** Service Worker Activate deletes old caches. */
 function swActivate(event) {
-  console.log('[Service Worker] Activate', Version);
-  event.waitUntil(caches.keys().then(
-    function forEachKey(keys) {
-      keys.forEach(
-        function cachesDelete(key) {
-          if (key !== Version) {
-            caches.delete(key);
-          }
-        }
-      );
+  console.log('[SW] Activate', CACHE_KEY);
+
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.map((key) => {
+    if (key !== CACHE_KEY) {
+      return caches.delete(key);
     }
-  ));
+    return undefined;
+  }))));
 }
 
-/** Service Worker Fetch goes to cache-first then network (no updates). */
+/** Service Worker Fetch goes to cache first then network (updates cache). */
 function swFetch(event) {
-  event.respondWith(caches.match(event.request).then(
-    function cachesMatch(cachedResponse) {
-      if (cachedResponse) {
-        const newHeaders = new Headers(cachedResponse.headers);
-        newHeaders.set('cache-control', 'no-cache');
+  // console.log('[SW] Fetch', CACHE_KEY, event.request.url);
 
-        return new Response(cachedResponse.body, {
-          status: cachedResponse.status,
-          statusText: cachedResponse.statusText,
-          headers: newHeaders,
-        });
+  const requestUrl = new URL(event.request.url);
+  const requestPath = requestUrl.pathname + (requestUrl.search ?? '');
+
+  event.respondWith(caches.open(CACHE_KEY).then((cache) => cache
+    .match(requestPath, CACHE_MATCH_OPTIONS).then((cacheResponse) => {
+      if (cacheResponse) {
+        return cacheResponse;
       }
 
-      console.log('[Service Worker] Fallback (Fetch)', event.request.url);
-      return fetch(event.request.clone());
-    }
-  ));
+      return fetch(requestPath, { cache: 'no-cache', redirect: 'manual' }).then((fetchResponse) => {
+        console.log('[SW] Cache miss', CACHE_KEY, requestPath, fetchResponse.status);
+        if (fetchResponse.status === 200) {
+          const responseUrl = new URL(fetchResponse.url);
+          const responsePath = responseUrl.pathname + (responseUrl.search ?? '');
+          cache.put(responsePath, fetchResponse.clone());
+        }
+        return fetchResponse;
+      }).catch((error) => {
+        console.log('[SW] Cache miss - error', CACHE_KEY, requestPath, error);
+        return new Response(HTML_OFFLINE, {
+          status: 503,
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'text/html; charset=utf-8',
+          },
+        });
+      });
+    })));
 }
 
 self.addEventListener('install', swInstall);

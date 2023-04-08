@@ -1,0 +1,52 @@
+html {
+  font-family: Arial;
+  font-size: 18px;
+}
+
+body {
+  margin: 16px 0 0 0;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 16px auto 16px auto;
+  padding: 0;
+  vertical-align: middle;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: #d5d5d5;
+  }
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: #008cff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff;
+    color: #333;
+  }
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: #0070f7;
+  }
+}

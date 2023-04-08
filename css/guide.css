@@ -1,8 +1,10 @@
+@import 'common.css';
+
 h1 {
-  font-size: 24px;
-  padding-left: 28px;
   background: url(/media/sprites.svg#guide) left center no-repeat;
   background-size: 20px;
+  font-size: 24px;
+  padding-left: 28px;
 }
 
 h2 {
@@ -15,59 +17,59 @@ h2 {
 }
 
 .section-links {
-  text-align: center;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   margin: 8px 0;
   padding: 4px 0;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 
 .table-icon-description {
   display: grid;
-  grid-auto-rows: min-content;
+  gap: 8px 16px;
   grid-auto-columns: max-content auto;
   grid-auto-flow: row;
-  gap: 8px 16px;
+  grid-auto-rows: min-content;
   margin-top: 16px;
 }
 
 .table-divider {
-  grid-row: auto;
-  grid-column: span 2;
-  margin: 4px 0;
   border-top: 1px solid #ccc;
+  grid-column: span 2;
+  grid-row: auto;
+  margin: 4px 0;
 }
 
 .row-icon {
-  grid-row: auto;
+  font-size: 18px;
   grid-column: 1;
+  grid-row: auto;
   justify-self: center;
   margin: 0;
-  font-size: 18px;
-  text-align: center;
   padding: 4px;
+  text-align: center;
 }
 
 .row-setting {
-  grid-row: auto;
+  font-weight: bold;
   grid-column: 1;
+  grid-row: auto;
   justify-self: start;
   margin: 0;
   padding: 4px;
-  font-weight: bold;
 }
 
 .row-description {
-  grid-row: auto;
-  grid-column: 2;
-  justify-self: start;
   align-self: center;
+  grid-column: 2;
+  grid-row: auto;
+  justify-self: start;
 }
 
 .header-icon {
+  align-self: center;
   font-weight: bold;
   text-align: center;
-  align-self: center;
 }
 
 .header-description {
@@ -77,9 +79,9 @@ h2 {
 
 .icon {
   display: inline-block;
-  width: 16px;
   height: 16px;
   vertical-align: bottom;
+  width: 16px;
 }
 
 .icon-flagged {
@@ -231,15 +233,15 @@ h2 {
 a.top-link {
   background: url(/media/sprites.svg#top) left center no-repeat;
   background-size: 18px;
-  padding-left: 22px;
   margin: 0 2px;
+  padding-left: 22px;
 }
 
 a.section-link {
   background: url(/media/sprites.svg#section-top) left center no-repeat;
   background-size: 18px;
-  padding-left: 22px;
   margin: 0 2px;
+  padding-left: 22px;
 }
 
 a.header-link {
@@ -263,10 +265,10 @@ li {
 .screenshot {
   background-color: var(--menu-color);
   border: 2px solid #ccc;
-  margin: 4px auto 16px auto;
   display: block;
-  max-width: 100%;
   height: auto;
+  margin: 4px auto 16px auto;
+  max-width: 100%;
 }
 
 .plain-image {
@@ -279,80 +281,81 @@ ul.no-bullet-list {
   padding-inline-start: 16px;
 }
 
-ul.link-list>li {
+ul.link-list > li {
   list-style: none;
   padding-inline-start: 0;
 }
 
-ul.link-list>li>a {
-  padding-left: 32px;
+ul.link-list > li > a {
   margin: 0;
+  padding-left: 32px;
 }
 
 .menu-mockup {
   background: var(--menu-color);
-  margin: 0 auto 12px auto;
-  width: min-content;
+  border-bottom-left-radius: 8px;
   border-bottom: 0.5px solid var(--border-color);
   border-left: 0.5px solid var(--border-color);
-  padding: 4px;
-  border-bottom-left-radius: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   gap: 14px;
+  justify-content: space-evenly;
+  margin: 0 auto 12px auto;
+  padding: 4px;
+  width: min-content;
 }
 
-.menu-mockup>.icon {
-  width: 16px;
+.menu-mockup > .icon {
   height: 16px;
   margin: 0;
+  width: 16px;
 }
 
-.menu-mockup>.icon.active {
+.menu-mockup > .icon.active {
   filter: hue-rotate(45deg);
 }
 
-.menu-mockup>.icon-export, .menu-mockup>.icon-download {
+.menu-mockup > .icon-export,
+.menu-mockup > .icon-download {
   color: var(--accent-color);
-  vertical-align: middle;
   padding: 1px 2px 1px 18px;
+  vertical-align: middle;
   width: max-content !important;
 }
 
 .mockup-container {
   margin: 0 auto 12px auto;
-  width: min-content;
   text-align: left;
+  width: min-content;
 }
 
-.mockup-container>.menu-mockup {
+.mockup-container > .menu-mockup {
   margin: 0 0 0 auto;
 }
 
 #edit-controls-mockup {
   background: var(--menu-color);
+  border-bottom-left-radius: 8px;
   border-bottom: 0.5px solid var(--border-color);
   border-left: 0.5px solid var(--border-color);
-  padding: 8px;
-  border-bottom-left-radius: 8px;
-  min-width: 138px;
   color: var(--accent-color);
   display: flex;
   flex-direction: column;
   margin: 0 0 0 auto;
+  min-width: 138px;
+  padding: 8px;
   width: min-content;
 }
 
-#edit-controls-mockup>button {
-  margin: 0;
-  border: 1px solid transparent;
+#edit-controls-mockup > button {
   border-radius: 4px;
+  border: 1px solid transparent;
   color: var(--accent-color);
   font-weight: normal;
+  height: 32px;
+  margin: 0;
   padding-left: 40px;
   text-align: left;
-  height: 32px;
 }
 
 #menu-highlight {
@@ -425,10 +428,10 @@ a.etsy {
 }
 
 p.tip {
+  border-radius: 4px;
+  border: 1px solid var(--accent-color);
   display: block;
-  width: 80%;
   margin: 12px auto;
   padding: 4px;
-  border: 1px solid var(--accent-color);
-  border-radius: 4px;
+  width: 80%;
 }

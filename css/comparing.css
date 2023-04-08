@@ -1,3 +1,5 @@
+@import 'common.css';
+
 /* Print Styles */
 
 @media print {
@@ -8,14 +10,15 @@
 
 /* Common Styles */
 
-html, body {
-  width: 100%;
+html,
+body {
   height: 100%;
   margin: 0;
+  overflow: hidden;
   padding: 0;
   -webkit-user-select: none;
   user-select: none;
-  overflow: hidden;
+  width: 100%;
 }
 
 h1 {
@@ -29,19 +32,19 @@ h1 {
 .back-link {
   background: url(/media/sprites.svg#back) left center no-repeat;
   background-size: 16px;
-  padding-left: 20px;
   margin: 0 2px;
+  padding-left: 20px;
 }
 
 .compare {
   height: 100%;
-  width: 100%;
+  left: 0;
   margin: 0;
+  overflow: hidden;
   padding: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  overflow: hidden;
+  width: 100%;
 }
 
 #compare-overlay {
@@ -50,22 +53,22 @@ h1 {
 }
 
 .compare-frame {
-  width: 100vw;
+  border: 0;
   height: 100vh;
   margin: 0;
   padding: 0;
-  border: 0;
+  width: 100vw;
 }
 
 #compare-slider {
-  width: 100%;
   bottom: 0;
-  left: 0;
   height: 20px;
-  position: absolute;
+  left: 0;
   margin: 0;
-  padding: 0;
   opacity: 60%;
+  padding: 0;
+  position: absolute;
+  width: 100%;
 }
 
 #compare-slider:hover {
